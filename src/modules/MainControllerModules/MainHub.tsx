@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../style/mainControllerModules/mainHubStyle.css";
 import MainHubHeader from "./MainHubModules/MainHubHeader";
+import PlannerMain from "./MainHubModules/Planner/PlannerMain";
 import TaskListMain from "./MainHubModules/TaskList/TaskListMain";
 export default function MainHub() {
   const [activeElement, setAcviteElement] = useState("hubElements");
@@ -26,7 +27,14 @@ export default function MainHub() {
                 >
                   Task list
                 </div>
-                <div className="hubElement">Planner</div>
+                <div
+                  className="hubElement"
+                  onClick={() => {
+                    setAcviteElement("planner");
+                  }}
+                >
+                  Planner
+                </div>
                 <div className="hubElement">E3</div>
                 <div className="hubElement">E4</div>
                 <div className="hubElement">E5</div>
@@ -35,6 +43,8 @@ export default function MainHub() {
             );
           case "taskList":
             return <TaskListMain />;
+          case "planner":
+            return <PlannerMain />;
           default:
             return null;
         }

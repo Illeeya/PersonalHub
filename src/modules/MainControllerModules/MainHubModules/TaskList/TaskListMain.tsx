@@ -1,16 +1,16 @@
 import "../../../../style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
+import * as logic from "../../../../logic/TaskListLogic/TaskListMainLogic";
 
 export default function TaskListMain() {
+  const { jsxTasksArray, addTask } = logic.useTaskHandler();
+
   return (
     <div className="taskListMainContainer">
       <div className="courtain"></div>
-      <div className="tasksContainer">
-        <div className="taskOuterContainer">
-          <input maxLength={16} placeholder="Task..." type="text" />
-          <button>X</button>
-        </div>
+      <div className="tasksContainer">{jsxTasksArray}</div>
+      <div className="buttonsContainer">
+        <button onClick={addTask}>New task</button>
       </div>
-      <button>New task</button>
     </div>
   );
 }

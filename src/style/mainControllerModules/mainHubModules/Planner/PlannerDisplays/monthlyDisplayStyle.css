@@ -1,0 +1,24 @@
+.monthlyDisplayContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 1rem 0;
+}
+
+.monthlyDayCell {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.realDay {
+  background-color: rgb(50, 50, 50);
+  transition-duration: 0.2s;
+}
+.realDay:hover {
+  background-color: rgb(65, 65, 65);
+  font-size: 1.2rem;
+}

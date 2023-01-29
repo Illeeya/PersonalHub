@@ -15,7 +15,7 @@
   place-items: center;
 }
 
-@keyframes appear {
+@keyframes mainHubElementsAppear {
   0% {
     font-size: 0;
     width: 50%;
@@ -29,7 +29,7 @@
 }
 
 .hubElementsContainer > div {
-  animation: 0.5s ease-out 0s 1 appear;
+  animation: 0.5s ease-out 0s 1 mainHubElementsAppear;
   width: 98%;
   height: 95%;
   background-color: rgb(30, 30, 30);

@@ -1,0 +1,82 @@
+.plannerMainContainer {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.plannerTasksSidebar {
+  border-right: 1px dotted gray;
+}
+
+.plannerContainer {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.plannerDisplayPicker {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+  gap: 0.4rem;
+}
+.plannerDisplayPicker > button {
+  font-size: 1.1rem;
+  letter-spacing: 0.3rem;
+  width: 100%;
+  font-weight: lighter;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 20px;
+}
+
+.selectedDisplay {
+  background-color: rgb(90, 90, 90);
+  font-weight: bolder !important;
+}
+
+/* .plannerDatePicker {
+  border-radius: 500px;
+  height: 100%;
+} */
+
+.datePickers {
+  width: 100%;
+  display: flex;
+  padding: 0.2rem;
+}
+
+.visiblePlannerDatePicker {
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold !important;
+  /* font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; */
+  border-radius: 500px;
+  color-scheme: light dark;
+  background-color: rgb(200, 200, 200);
+  color: black;
+
+  border: solid rgb(100, 100, 100) 1px;
+}
+
+.invisiblePlannerDatePicker {
+  opacity: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: red;
+}
+
+.visiblePlannerDatePicker::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.invisiblePlannerDatePicker::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+}
