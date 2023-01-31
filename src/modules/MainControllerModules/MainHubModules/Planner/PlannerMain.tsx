@@ -4,8 +4,14 @@ import DailyDisplay from "./PlannerDisplays/DailyDisplay/DailyDisplay";
 import MonthlyDisplay from "./PlannerDisplays/DailyDisplay/MonthlyDisplay";
 import WeeklyDisplay from "./PlannerDisplays/DailyDisplay/WeeklyDisplay";
 export default function PlannerMain() {
-  const { plannerDisplay, setPlannerDisplay, datePicked, setDatePicked } =
-    useMainPlanner();
+  const {
+    plannerDisplay,
+    setPlannerDisplay,
+    fullDatePicked,
+    handleDateChange,
+    pickerType,
+    handleYearButtons,
+  } = useMainPlanner();
   return (
     <div className="plannerMainContainer">
       <div className="plannerTasksSidebar">There will be tasks</div>
@@ -44,24 +50,83 @@ export default function PlannerMain() {
             YEARLY
           </button>
         </div>
-        <div className="datePickers">
-          <input
-            className="invisiblePlannerDatePicker"
-            id="invisiblePlannerDatePicker"
-            type="date"
-            value={datePicked}
-            onChange={(event) => {
-              setDatePicked(event.target.value);
-            }}
-          />
-          <input
-            className="visiblePlannerDatePicker"
-            id="visiblePlannerDatePicker"
-            type="date"
-            value={datePicked}
-            readOnly
-          />
-        </div>
+        {plannerDisplay !== "YEARLY" ? (
+          <div className="datePickers">
+            <input
+              className="invisiblePlannerDatePicker"
+              id="invisiblePlannerDatePicker"
+              type={pickerType}
+              value={
+                plannerDisplay === "MONTHLY"
+                  ? fullDatePicked["year"] + "-" + fullDatePicked["month"]
+                  : fullDatePicked["year"] +
+                    "-" +
+                    fullDatePicked["month"] +
+                    "-" +
+                    fullDatePicked["day"]
+              }
+              onChange={(event) => {
+                console.log(fullDatePicked);
+                console.log(
+                  fullDatePicked["year"] +
+                    "-" +
+                    fullDatePicked["month"] +
+                    "-" +
+                    fullDatePicked["day"]
+                );
+                handleDateChange(event.target.value);
+              }}
+            />
+            <input
+              className="visiblePlannerDatePicker"
+              id="visiblePlannerDatePicker"
+              type={pickerType}
+              value={
+                plannerDisplay === "MONTHLY"
+                  ? fullDatePicked["year"] + "-" + fullDatePicked["month"]
+                  : fullDatePicked["year"] +
+                    "-" +
+                    fullDatePicked["month"] +
+                    "-" +
+                    fullDatePicked["day"]
+              }
+              readOnly
+            />
+          </div>
+        ) : (
+          <div className="datePickers">
+            <button
+              onClick={() => handleYearButtons("decrease")}
+              className="plannerYearPickerButton decreaseButton"
+            >
+              -
+            </button>
+            <input
+              className="plannerYearPicker"
+              type="number"
+              min={new Date().getFullYear() - 2}
+              max={new Date().getFullYear() + 90}
+              step={1}
+              value={Number(fullDatePicked["year"])}
+              onChange={(event) => {
+                handleDateChange(event.target.value.toString());
+              }}
+              readOnly
+            />
+            <button
+              onClick={() => handleYearButtons("increase")}
+              className="plannerYearPickerButton increaseButton"
+            >
+              +
+            </button>
+          </div>
+        )}
+        {/* 
+        
+        
+        
+        
+        */}
         {(() => {
           switch (plannerDisplay) {
             case "DAILY":
@@ -69,7 +134,17 @@ export default function PlannerMain() {
             case "WEEKLY":
               return <WeeklyDisplay />;
             case "MONTHLY":
-              return <MonthlyDisplay selectedDateProp={datePicked} />;
+              return (
+                <MonthlyDisplay
+                  selectedDateProp={
+                    fullDatePicked["year"] +
+                    "-" +
+                    fullDatePicked["month"] +
+                    "-" +
+                    fullDatePicked["day"]
+                  }
+                />
+              );
             case "YEARLY":
               return <div>YEARLY</div>;
             default:

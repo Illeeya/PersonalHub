@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 export function useDailyDisplay() {
   const dailyTasks: JSX.Element[] = [];
@@ -43,8 +41,6 @@ export interface monthlyDisplayProps {
   selectedDateProp: string;
 }
 export function useMonthlyDisplay(passedDate: string) {
-  //const [selectedDate, setSelectedDate] = useState(passedDate);
-
   const passedYear: number = Number(passedDate.split("-")[0]);
   const passedMonth: number = Number(passedDate.split("-")[1]);
 
@@ -69,10 +65,6 @@ export function useMonthlyDisplay(passedDate: string) {
     if (weekdayCounter == 6) weekdayCounter -= 7;
     weekdayCounter++;
   }
-
-  // function test() {
-  //   alert(dateValue.getUTCDay());
-  // }
 
   return { daysArray, firstDay };
 }
