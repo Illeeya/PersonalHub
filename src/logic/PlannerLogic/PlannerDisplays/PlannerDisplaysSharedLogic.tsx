@@ -18,20 +18,48 @@ export function useDailyDisplay() {
   return { dailyTasks };
 }
 
-export function useWeeklyDisplay() {
+export interface weeklyDisplayProps {
+  selectedDateProp: string;
+  dayChange: (day: string) => void;
+  displayChange: (display: string) => void;
+}
+export function useWeeklyDisplay(
+  curentDate: string,
+  dayChange: (day: string) => void,
+  displayChange: (display: string) => void
+) {
   const weeklyTasks: JSX.Element[] = [];
 
+  const date_ = new Date(curentDate);
+  const dayOfWeek = date_.getUTCDay() === 0 ? 6 : date_.getUTCDay() - 1;
+  date_.setDate(date_.getDate() - dayOfWeek); //set date to first day of week
+
   for (let i = 0; i < 7; i++) {
+    let dayFullDate = date_.toISOString().split("T")[0];
     weeklyTasks.push(
-      <label
-        htmlFor={"day" + i}
+      <div
+        //htmlFor={"day" + i}
         key={"day" + i}
+        id={dayFullDate}
         className="weeklyTaskContainer"
       >
-        <p>{weekDays[i]}:</p>
+        <div
+          onClick={() => {
+            handleDaySelect(dayFullDate);
+          }}
+        >
+          {("0" + date_.getUTCDate()).slice(-2) + " | " + weekDays[i]}:
+        </div>
         <input type="text" id={"day" + i} />
-      </label>
+      </div>
     );
+
+    date_.setDate(date_.getDate() + 1);
+  }
+
+  function handleDaySelect(date: string) {
+    dayChange(date);
+    displayChange("DAILY");
   }
 
   return { weeklyTasks };
@@ -39,8 +67,15 @@ export function useWeeklyDisplay() {
 
 export interface monthlyDisplayProps {
   selectedDateProp: string;
+
+  dayChange: (day: string) => void;
+  displayChange: (display: string) => void;
 }
-export function useMonthlyDisplay(passedDate: string) {
+export function useMonthlyDisplay(
+  passedDate: string,
+  dayChange: (day: string) => void,
+  displayChange: (display: string) => void
+) {
   const passedYear: number = Number(passedDate.split("-")[0]);
   const passedMonth: number = Number(passedDate.split("-")[1]);
 
@@ -53,7 +88,11 @@ export function useMonthlyDisplay(passedDate: string) {
   for (let i = 0; i < 42; i++) {
     if (i >= firstDay && i < daysInMonth + firstDay) {
       daysArray.push(
-        <div className="realDay monthlyDayCell" key={"monthDay" + i}>
+        <div
+          onClick={() => handleDaySelect(i - firstDay + 1)}
+          className="realDay monthlyDayCell"
+          key={"monthDay" + i}
+        >
           {i - firstDay + 1} - {weekDays[weekdayCounter]}
         </div>
       );
@@ -66,5 +105,58 @@ export function useMonthlyDisplay(passedDate: string) {
     weekdayCounter++;
   }
 
+  function handleDaySelect(day: number) {
+    dayChange(
+      `${passedYear}-${passedDate.split("-")[1]}-${("0" + day).slice(-2)}`
+    );
+    displayChange("DAILY");
+  }
+
   return { daysArray, firstDay };
+}
+
+export interface yearlyDisplayProps {
+  monthChange: (month: string) => void;
+  displayChange: (display: string) => void;
+  pickedYear: string;
+}
+export function useYearlyDisplay(
+  monthChange: (month: string) => void,
+  displayChange: (display: string) => void,
+  pickedYear: string
+) {
+  const monthsList: string[] = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const monthCells: JSX.Element[] = monthsList.map(
+    (month: string, index: number) => (
+      <div
+        onClick={() => {
+          handleMonthSelect(index);
+        }}
+        id={month + "MonthCell"}
+      >
+        {month}
+      </div>
+    )
+  );
+
+  function handleMonthSelect(month: number) {
+    monthChange(`${pickedYear}-${("0" + (month + 1)).slice(-2)}`);
+    displayChange("MONTHLY");
+  }
+
+  return monthCells;
 }

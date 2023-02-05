@@ -1,8 +1,24 @@
+import React from "react";
 import { useMainPlanner } from "../../../../logic/PlannerLogic/PlannerMainLogic";
 import "../../../../style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
-import DailyDisplay from "./PlannerDisplays/DailyDisplay/DailyDisplay";
-import MonthlyDisplay from "./PlannerDisplays/DailyDisplay/MonthlyDisplay";
-import WeeklyDisplay from "./PlannerDisplays/DailyDisplay/WeeklyDisplay";
+
+const DailyDisplay = React.lazy(
+  () => import("./PlannerDisplays/DailyDisplay/DailyDisplay")
+);
+const MonthlyDisplay = React.lazy(
+  () => import("./PlannerDisplays/DailyDisplay/MonthlyDisplay")
+);
+const WeeklyDisplay = React.lazy(
+  () => import("./PlannerDisplays/DailyDisplay/WeeklyDisplay")
+);
+const YearlyDisplay = React.lazy(
+  () => import("./PlannerDisplays/DailyDisplay/YearlyDisplay")
+);
+
+// import DailyDisplay from "./PlannerDisplays/DailyDisplay/DailyDisplay";
+// import MonthlyDisplay from "./PlannerDisplays/DailyDisplay/MonthlyDisplay";
+// import WeeklyDisplay from "./PlannerDisplays/DailyDisplay/WeeklyDisplay";
+// import YearlyDisplay from "./PlannerDisplays/DailyDisplay/YearlyDisplay";
 export default function PlannerMain() {
   const {
     plannerDisplay,
@@ -130,23 +146,53 @@ export default function PlannerMain() {
         {(() => {
           switch (plannerDisplay) {
             case "DAILY":
-              return <DailyDisplay />;
+              return (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <DailyDisplay />
+                </React.Suspense>
+              );
             case "WEEKLY":
-              return <WeeklyDisplay />;
+              return (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <WeeklyDisplay
+                    selectedDateProp={
+                      fullDatePicked["year"] +
+                      "-" +
+                      fullDatePicked["month"] +
+                      "-" +
+                      fullDatePicked["day"]
+                    }
+                    dayChange={handleDateChange}
+                    displayChange={setPlannerDisplay}
+                  />
+                </React.Suspense>
+              );
             case "MONTHLY":
               return (
-                <MonthlyDisplay
-                  selectedDateProp={
-                    fullDatePicked["year"] +
-                    "-" +
-                    fullDatePicked["month"] +
-                    "-" +
-                    fullDatePicked["day"]
-                  }
-                />
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <MonthlyDisplay
+                    selectedDateProp={
+                      fullDatePicked["year"] +
+                      "-" +
+                      fullDatePicked["month"] +
+                      "-" +
+                      fullDatePicked["day"]
+                    }
+                    dayChange={handleDateChange}
+                    displayChange={setPlannerDisplay}
+                  />
+                </React.Suspense>
               );
             case "YEARLY":
-              return <div>YEARLY</div>;
+              return (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <YearlyDisplay
+                    monthChange={handleDateChange}
+                    displayChange={setPlannerDisplay}
+                    pickedYear={fullDatePicked.year}
+                  />
+                </React.Suspense>
+              );
             default:
               break;
           }

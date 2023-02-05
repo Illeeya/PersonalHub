@@ -45,14 +45,17 @@
 
 .datePickers {
   width: 50%;
+  height: 2rem;
   display: flex;
   padding: 0.2rem;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .visiblePlannerDatePicker {
   pointer-events: none;
+  position: absolute;
   width: 100%;
   text-align: center;
   letter-spacing: 0.5rem;
@@ -70,7 +73,8 @@
 .invisiblePlannerDatePicker {
   opacity: 0;
   width: 100%;
-  position: fixed;
+  /* left: 25%; */
+  position: absolute;
   z-index: 1;
   background-color: red;
 }
@@ -91,16 +95,12 @@
   letter-spacing: 0.5rem;
   font-size: 1.3rem;
   font-weight: bold !important;
-  /* border-radius: 500px; */
   color-scheme: light dark;
   background-color: rgb(200, 200, 200);
   color: black;
   border: solid rgb(100, 100, 100) 1px;
   border: none;
-}
-.plannerYearPicker::-webkit-inner-spin-button,
-.plannerYearPicker::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+  pointer-events: none;
 }
 
 .plannerYearPickerButton {

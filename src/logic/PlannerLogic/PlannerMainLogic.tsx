@@ -22,7 +22,12 @@ export const useMainPlanner = () => {
       : handleDateChange((Number(fullDatePicked.year) - 1).toString());
   }
 
+  function handlePlannerDisplayChange(display: string) {
+    setPlannerDisplay(display);
+  }
+
   function handleDateChange(passedDate: string) {
+    console.log("handleDateChange called with argument", passedDate);
     const dateParts: string[] = passedDate.split("-");
     let year_: string = dateParts[0];
     const month_: string = dateParts[1] ? dateParts[1] : fullDatePicked.month;
@@ -34,6 +39,7 @@ export const useMainPlanner = () => {
       year_ = fullDatePicked.year;
     }
     setFullDatePicked({ year: year_, month: month_, day: day_ });
+    console.log("Finished");
   }
   const pickerType = pickerTypes[plannerDisplay];
 
@@ -44,5 +50,6 @@ export const useMainPlanner = () => {
     handleDateChange,
     pickerType,
     handleYearButtons,
+    handlePlannerDisplayChange,
   };
 };
