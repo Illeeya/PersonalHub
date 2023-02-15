@@ -1,0 +1,22 @@
+.notebookMainContainer {
+  border: 1px red solid;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+}
+.notebookMainContainer > * {
+  margin: 0.5rem;
+}
+.notebookMainContainer > button {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  padding: 0;
+  margin: 0;
+}
+
+.notebookNote {
+  border: red 1px solid;
+}
