@@ -1,8 +1,8 @@
 import {
   useYearlyDisplay,
   yearlyDisplayProps,
-} from "../../../../../../logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
-import "../../../../../../style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/yearlyDisplayStyle.css";
+} from "logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
+import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/yearlyDisplayStyle.css";
 
 export default function YearlyDisplay({
   monthChange,

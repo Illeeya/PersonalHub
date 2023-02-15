@@ -1,6 +1,6 @@
 import React from "react";
-import { useMainPlanner } from "../../../../logic/PlannerLogic/PlannerMainLogic";
-import "../../../../style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
+import { useMainPlanner } from "logic/PlannerLogic/PlannerMainLogic";
+import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
 
 const DailyDisplay = React.lazy(
   () => import("./PlannerDisplays/DailyDisplay/DailyDisplay")

@@ -1,4 +1,4 @@
-import "../../../style/mainControllerModules/mainHubModules/mainHubHeaderStyle.css";
+import "style/mainControllerModules/mainHubModules/mainHubHeaderStyle.css";
 interface Props {
   goBack: () => void;
 }

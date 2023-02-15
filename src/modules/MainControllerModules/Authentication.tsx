@@ -1,4 +1,4 @@
-import "../../style/mainControllerModules/authenticationStyle.css";
+import "style/mainControllerModules/authenticationStyle.css";
 
 interface Props {
   logIn: () => void;

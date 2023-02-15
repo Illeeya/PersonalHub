@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Task from "../../modules/MainControllerModules/MainHubModules/TaskList/Task";
+import Task from "modules/MainControllerModules/MainHubModules/TaskList/Task";
 
 export interface TaskObject {
   taskID: number;

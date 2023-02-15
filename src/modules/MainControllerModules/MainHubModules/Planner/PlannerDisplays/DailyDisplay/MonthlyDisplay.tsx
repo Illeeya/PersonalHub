@@ -1,8 +1,8 @@
 import {
   useMonthlyDisplay,
   monthlyDisplayProps,
-} from "../../../../../../logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
-import "../../../../../../style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/monthlyDisplayStyle.css";
+} from "logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
+import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/monthlyDisplayStyle.css";
 export default function MonthlyDisplay({
   selectedDateProp,
   dayChange,

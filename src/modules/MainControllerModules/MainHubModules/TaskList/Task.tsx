@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { TaskProps } from "../../../../logic/TaskListLogic/TaskListMainLogic";
-import "../../../../style/mainControllerModules/mainHubModules/TaskList/taskStyle.css";
+import { TaskProps } from "logic/TaskListLogic/TaskListMainLogic";
+import "style/mainControllerModules/mainHubModules/TaskList/taskStyle.css";
 
 export default function Task({ taskID, taskText, taskHandler }: TaskProps) {
   const [taskValue, setTaskValue] = useState<string>(taskText);

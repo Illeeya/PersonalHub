@@ -1,5 +1,5 @@
-import "../../../../style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
-import * as logic from "../../../../logic/TaskListLogic/TaskListMainLogic";
+import "style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
+import * as logic from "logic/TaskListLogic/TaskListMainLogic";
 
 export default function TaskListMain() {
   const { jsxTasksArray, addTask } = logic.useTaskHandler();

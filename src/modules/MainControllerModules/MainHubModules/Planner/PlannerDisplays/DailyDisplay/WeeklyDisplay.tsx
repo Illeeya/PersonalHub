@@ -1,8 +1,8 @@
 import {
   useWeeklyDisplay,
   weeklyDisplayProps,
-} from "../../../../../../logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
-import "../../../../../../style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/weeklyDisplayStyle.css";
+} from "logic/PlannerLogic/PlannerDisplays/PlannerDisplaysSharedLogic";
+import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/weeklyDisplayStyle.css";
 
 export default function WeeklyDisplay({
   selectedDateProp,
