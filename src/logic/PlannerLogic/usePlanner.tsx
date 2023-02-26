@@ -10,10 +10,12 @@ export const useMainPlanner = () => {
     YEARLY: "number",
   };
   const [plannerDisplay, setPlannerDisplay] = useState("DAILY");
-  const [fullDatePicked, setFullDatePicked] = useState({
-    year: today.getFullYear().toString(),
-    month: ("0" + (today.getMonth() + 1)).slice(-2),
-    day: ("0" + today.getDate()).slice(-2),
+  const [fullDatePicked, setFullDatePicked] = useState(() => {
+    return {
+      year: today.getFullYear().toString(),
+      month: ("0" + (today.getMonth() + 1)).slice(-2),
+      day: ("0" + today.getDate()).slice(-2),
+    };
   });
 
   function handleYearButtons(operation: string) {

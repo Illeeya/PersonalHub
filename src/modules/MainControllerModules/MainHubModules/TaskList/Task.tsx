@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TaskProps } from "logic/TaskListLogic/TaskListMainLogic";
+import { TaskProps } from "logic/TaskListLogic/useTaskList";
 import "style/mainControllerModules/mainHubModules/TaskList/taskStyle.css";
 
 export default function Task({ taskID, taskText, taskHandler }: TaskProps) {

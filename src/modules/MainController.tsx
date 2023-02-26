@@ -1,4 +1,4 @@
-import { useLogin } from "logic/MainLogic";
+import { useLogin } from "logic/useMain";
 import Authentication from "./MainControllerModules/Authentication";
 import MainHub from "./MainControllerModules/MainHub";
 

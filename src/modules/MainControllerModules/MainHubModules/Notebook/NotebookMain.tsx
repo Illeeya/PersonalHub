@@ -1,20 +1,15 @@
+import { useNotebook } from "logic/NotebookLogic/useNotebook";
 import { useState } from "react";
-import "style/mainControllerModules/mainHubModules/Notebook/notebookMainStyle.css";
-import NotebookNote from "./NotebookNote";
+import Note from "./SubModules/Note";
 
 export default function NotebookMain() {
-  const [notes, setNotes] = useState<JSX.Element[]>([]);
-
-  function addNewTextArea() {
-    console.log("Eg?");
-    const dateNow = Date.now();
-    setNotes([...notes, <NotebookNote key={dateNow} />]);
-  }
-
+  const { notes, addNewNote } = useNotebook();
   return (
     <div className="notebookMainContainer">
-      {notes}
-      <button onClick={() => addNewTextArea()}>+</button>
+      <div className="notesContainer">{notes}</div>
+      <button className="newNoteButton" onClick={addNewNote}>
+        +
+      </button>
     </div>
   );
 }

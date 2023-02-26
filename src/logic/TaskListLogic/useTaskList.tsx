@@ -45,8 +45,8 @@ export const useTaskHandler = () => {
     actionType: string
   ) {
     if (actionType === "MODIFY")
-      setTasksObjectsArray(
-        tasksObjectsArray.map((task) => {
+      setTasksObjectsArray((prevTasksObjectsArray) =>
+        prevTasksObjectsArray.map((task) => {
           if (task.taskID === taskID)
             return { taskID: taskID, taskText: taskText };
           else return task;

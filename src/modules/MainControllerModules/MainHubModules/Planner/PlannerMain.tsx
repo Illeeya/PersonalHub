@@ -1,5 +1,5 @@
 import React from "react";
-import { useMainPlanner } from "logic/PlannerLogic/PlannerMainLogic";
+import { useMainPlanner } from "logic/PlannerLogic/usePlanner";
 import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
 
 const DailyDisplay = React.lazy(
