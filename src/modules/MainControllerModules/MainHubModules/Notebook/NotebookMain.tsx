@@ -1,6 +1,4 @@
 import { useNotebook } from "logic/NotebookLogic/useNotebook";
-import { useState } from "react";
-import Note from "./SubModules/Note";
 
 export default function NotebookMain() {
   const { notes, addNewNote } = useNotebook();

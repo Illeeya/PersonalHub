@@ -5,10 +5,27 @@ export function useNotebook() {
   const [notes, setNotes] = useState<JSX.Element[]>([]);
 
   function addNewNote() {
-    setNotes([...notes, <Note />]);
+    const dateNow = Date.now();
+    setNotes([
+      ...notes,
+      <Note
+        key={"nt" + dateNow}
+        noteID={"nt" + dateNow}
+        handleDelete={deleteNote}
+      />,
+    ]);
+  }
+
+  function deleteNote(noteID: string) {
+    setNotes((notes) => notes.filter((x) => x.props.noteID !== noteID));
   }
 
   return { addNewNote, notes };
+}
+
+export interface NoteProps {
+  noteID: string;
+  handleDelete: (noteID: string) => void;
 }
 
 export function useNote() {
