@@ -1,6 +1,7 @@
 import React from "react";
 import { useMainPlanner } from "logic/PlannerLogic/usePlanner";
 import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
+import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
 
 const DailyDisplay = React.lazy(
   () => import("./PlannerDisplays/DailyDisplay/DailyDisplay")
@@ -30,7 +31,9 @@ export default function PlannerMain() {
   } = useMainPlanner();
   return (
     <div className="plannerMainContainer">
-      <div className="plannerTasksSidebar">There will be tasks</div>
+      <div className="plannerTasksSidebar">
+        <PlannerSideBar />
+      </div>
       <div className="plannerContainer">
         <div className="plannerDisplayPicker">
           <button
