@@ -36,7 +36,7 @@ export function useNotebook() {
 
     setNotesObjects((notesObjects) => [
       ...notesObjects,
-      { noteID: "nt" + dateNow, noteText: "asd" + dateNow },
+      { noteID: "nt" + dateNow, noteText: "" },
     ]);
   }
 
