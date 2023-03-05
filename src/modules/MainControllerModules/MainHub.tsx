@@ -1,3 +1,4 @@
+import { useTaskHandler } from "logic/TaskListLogic/useTaskList";
 import { useState } from "react";
 import "style/mainControllerModules/mainHubStyle.css";
 import MainHubHeader from "./MainHubModules/MainHubHeader";
@@ -5,6 +6,7 @@ import NotebookMain from "./MainHubModules/Notebook/NotebookMain";
 import PlannerMain from "./MainHubModules/Planner/PlannerMain";
 import TaskListMain from "./MainHubModules/TaskList/TaskListMain";
 export default function MainHub() {
+  const { jsxTasksArray, jsxTasksArraySidebar, addTask } = useTaskHandler();
   const [activeElement, setAcviteElement] = useState("hubElements");
   return (
     <div className="mainHubContainer">
@@ -48,9 +50,11 @@ export default function MainHub() {
               </div>
             );
           case "taskList":
-            return <TaskListMain />;
+            return (
+              <TaskListMain jsxTasksArray={jsxTasksArray} addTask={addTask} />
+            );
           case "planner":
-            return <PlannerMain />;
+            return <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
           case "notebook":
             return <NotebookMain />;
           default:

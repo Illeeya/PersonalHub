@@ -2,6 +2,7 @@ import React from "react";
 import { useMainPlanner } from "logic/PlannerLogic/usePlanner";
 import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
 import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
+import { PlannerSideBarProps } from "logic/TaskListLogic/useTaskList";
 
 const DailyDisplay = React.lazy(
   () => import("./PlannerDisplays/DailyDisplay/DailyDisplay")
@@ -20,7 +21,9 @@ const YearlyDisplay = React.lazy(
 // import MonthlyDisplay from "./PlannerDisplays/DailyDisplay/MonthlyDisplay";
 // import WeeklyDisplay from "./PlannerDisplays/DailyDisplay/WeeklyDisplay";
 // import YearlyDisplay from "./PlannerDisplays/DailyDisplay/YearlyDisplay";
-export default function PlannerMain() {
+export default function PlannerMain({
+  jsxTasksArraySidebar,
+}: PlannerSideBarProps) {
   const {
     plannerDisplay,
     setPlannerDisplay,
@@ -32,7 +35,7 @@ export default function PlannerMain() {
   return (
     <div className="plannerMainContainer">
       <div className="plannerTasksSidebar">
-        <PlannerSideBar />
+        <PlannerSideBar jsxTasksArraySidebar={jsxTasksArraySidebar} />
       </div>
       <div className="plannerContainer">
         <div className="plannerDisplayPicker">

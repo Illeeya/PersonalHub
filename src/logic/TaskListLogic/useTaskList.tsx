@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Task from "modules/MainControllerModules/MainHubModules/TaskList/Task";
+import SideBarTask from "modules/MainControllerModules/MainHubModules/Planner/PlannerSideBar/SideBarTask";
 
 export interface TaskObject {
   taskID: number;
@@ -10,6 +11,15 @@ export interface TaskProps extends TaskObject {
   taskHandler: (taskID: number, taskText: string, actionType: string) => void;
 }
 
+export interface TaskListMainProps {
+  jsxTasksArray: JSX.Element[];
+  addTask: () => void;
+}
+
+export interface PlannerSideBarProps {
+  jsxTasksArraySidebar: JSX.Element[];
+}
+
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
   localStorage.setItem("personalHubTasksList", JSON.stringify(taskArray));
 }
@@ -18,6 +28,9 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 
 export const useTaskHandler = () => {
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
+  const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
+    JSX.Element[]
+  >([]);
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
@@ -31,6 +44,17 @@ export const useTaskHandler = () => {
             taskID={task.taskID}
             taskText={task.taskText}
             taskHandler={handleTaskChange}
+          />
+        );
+      })
+    );
+    setJsxTasksArraySidebar(
+      tasksObjectsArray.map((task) => {
+        return (
+          <SideBarTask
+            key={task.taskID}
+            taskID={task.taskID}
+            taskText={task.taskText}
           />
         );
       })
@@ -67,5 +91,5 @@ export const useTaskHandler = () => {
     ]);
   }
 
-  return { jsxTasksArray, addTask };
+  return { jsxTasksArray, jsxTasksArraySidebar, addTask };
 };
