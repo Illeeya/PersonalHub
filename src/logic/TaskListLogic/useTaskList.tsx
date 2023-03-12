@@ -10,6 +10,17 @@ export interface TaskProps extends TaskObject {
   taskHandler: (taskID: number, taskText: string, actionType: string) => void;
 }
 
+export interface AddTaskProp {
+  addTask: (taskText: string) => void;
+}
+export interface TaskListMainProps extends AddTaskProp {
+  jsxTasksArray: JSX.Element[];
+}
+
+export interface PlannerSideBarProps {
+  jsxTasksArraySidebar: JSX.Element[];
+}
+
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
   localStorage.setItem("personalHubTasksList", JSON.stringify(taskArray));
 }
@@ -59,11 +70,11 @@ export const useTaskHandler = () => {
         })
       );
   }
-  function addTask() {
+  function addTask(taskText: string) {
     let newTaskId = Date.now();
     setTasksObjectsArray([
       ...tasksObjectsArray,
-      { taskID: newTaskId, taskText: "" },
+      { taskID: newTaskId, taskText: taskText },
     ]);
   }
 

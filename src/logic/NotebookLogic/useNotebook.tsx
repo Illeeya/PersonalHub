@@ -1,7 +1,8 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import Note from "modules/MainControllerModules/MainHubModules/Notebook/SubModules/Note";
+import { AddTaskProp } from "logic/TaskListLogic/useTaskList";
 
-export function useNotebook() {
+export function useNotebook(addTask: (taskText: string) => void) {
   const [notesObjects, setNotesObjects] = useState<
     { noteID: string; noteText: string }[]
   >(JSON.parse(localStorage.getItem("personalHubNotes") || "[]"));
@@ -20,6 +21,7 @@ export function useNotebook() {
           noteText={noteObject.noteText}
           handleDelete={deleteNote}
           handleChange={updateNote}
+          addTask={() => addTask(noteObject.noteText)}
         />
       ))
     );
@@ -53,7 +55,7 @@ export function useNotebook() {
   return { addNewNote, notes };
 }
 
-export interface NoteProps {
+export interface NoteProps extends AddTaskProp {
   noteID: string;
   noteText: string;
   handleDelete: (noteID: string) => void;

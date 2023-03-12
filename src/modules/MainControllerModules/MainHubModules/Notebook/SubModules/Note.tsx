@@ -6,6 +6,7 @@ export default function Note({
   noteText,
   handleDelete,
   handleChange,
+  addTask,
 }: NoteProps) {
   const { scaleTextArea } = useNote();
   return (
@@ -18,7 +19,20 @@ export default function Note({
           scaleTextArea(event), handleChange(noteID, event.target.value);
         }}
       ></textarea>
-      <button onClick={() => handleDelete(noteID)} className="noteDeleteButton">
+
+      <button
+        onClick={() => {
+          addTask(noteText);
+          handleDelete(noteID);
+        }}
+        className="noteButton noteTaskifyButton"
+      >
+        Taskify
+      </button>
+      <button
+        onClick={() => handleDelete(noteID)}
+        className="noteButton noteDeleteButton"
+      >
         DELETE
       </button>
     </div>

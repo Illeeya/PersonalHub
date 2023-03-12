@@ -52,7 +52,7 @@ export default function MainHub() {
           case "planner":
             return <PlannerMain />;
           case "notebook":
-            return <NotebookMain />;
+            return <NotebookMain addTask={addTask} />;
           default:
             return null;
         }
