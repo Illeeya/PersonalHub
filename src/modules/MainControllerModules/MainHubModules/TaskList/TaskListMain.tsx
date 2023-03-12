@@ -1,9 +1,10 @@
 import "style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
-import * as logic from "logic/TaskListLogic/useTaskList";
+import { TaskListMainProps } from "logic/TaskListLogic/useTaskList";
 
-export default function TaskListMain() {
-  const { jsxTasksArray, addTask } = logic.useTaskHandler();
-
+export default function TaskListMain({
+  jsxTasksArray,
+  addTask,
+}: TaskListMainProps) {
   return (
     <div className="taskListMainContainer">
       <div className="courtain"></div>
