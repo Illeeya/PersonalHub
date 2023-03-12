@@ -11,9 +11,12 @@ export interface TaskProps extends TaskObject {
   taskHandler: (taskID: number, taskText: string, actionType: string) => void;
 }
 
+export interface AddTaskProp {
+  addTask: (taskText: string) => void;
+}
 export interface TaskListMainProps {
   jsxTasksArray: JSX.Element[];
-  addTask: () => void;
+  addTask: (taskText: string) => void;
 }
 
 export interface PlannerSideBarProps {
@@ -83,11 +86,11 @@ export const useTaskHandler = () => {
         })
       );
   }
-  function addTask() {
+  function addTask(taskText: string) {
     let newTaskId = Date.now();
     setTasksObjectsArray([
       ...tasksObjectsArray,
-      { taskID: newTaskId, taskText: "" },
+      { taskID: newTaskId, taskText: taskText },
     ]);
   }
 

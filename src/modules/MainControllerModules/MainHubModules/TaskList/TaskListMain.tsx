@@ -10,7 +10,7 @@ export default function TaskListMain({
       <div className="courtain"></div>
       <div className="tasksContainer">{jsxTasksArray}</div>
       <div className="buttonsContainer">
-        <button onClick={addTask}>New task</button>
+        <button onClick={() => addTask("")}>New task</button>
       </div>
     </div>
   );

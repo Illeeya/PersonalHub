@@ -56,7 +56,7 @@ export default function MainHub() {
           case "planner":
             return <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
           case "notebook":
-            return <NotebookMain />;
+            return <NotebookMain addTask={addTask} />;
           default:
             return null;
         }
