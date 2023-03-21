@@ -1,0 +1,32 @@
+.CvMainContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, auto);
+    padding: 1rem;
+}
+
+.CvMainContainer>* {
+    padding: 1rem 0;
+}
+
+.CvMainContainer>h2:not(:first-child) {
+    border-top: 1px rgb(80, 80, 80) solid;
+}
+
+.personalInfoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+}
+
+.personalInfoContainer> :not(:nth-child(-n + 3)) {
+    border-left: 1px red solid;
+}
+
+.divider {
+    border-top: dashed 1px rgba(240, 248, 255, 50%);
+}

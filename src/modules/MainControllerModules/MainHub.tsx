@@ -1,6 +1,7 @@
 import { useTaskHandler } from "logic/TaskListLogic/useTaskList";
 import { useState } from "react";
 import "style/mainControllerModules/mainHubStyle.css";
+import CV from "./MainHubModules/CV/CVMain";
 import MainHubHeader from "./MainHubModules/MainHubHeader";
 import NotebookMain from "./MainHubModules/Notebook/NotebookMain";
 import PlannerMain from "./MainHubModules/Planner/PlannerMain";
@@ -44,7 +45,12 @@ export default function MainHub() {
                 >
                   Notebook
                 </div>
-                <div className="hubElement">E4</div>
+                <div
+                  className="hubElement"
+                  onClick={() => setAcviteElement("cv")}
+                >
+                  CV
+                </div>
                 <div className="hubElement">E5</div>
                 <div className="hubElement">E6</div>
               </div>
@@ -57,6 +63,8 @@ export default function MainHub() {
             return <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
           case "notebook":
             return <NotebookMain addTask={addTask} />;
+          case "cv":
+            return <CV />;
           default:
             return null;
         }

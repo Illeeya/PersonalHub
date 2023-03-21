@@ -1,0 +1,70 @@
+.skillMainContainer {
+    width: 25%;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 1rem;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.skillMainContainer>p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    letter-spacing: .2rem;
+}
+
+
+.skillMeterMainContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.skillMeter {
+    display: flex;
+    width: 100%;
+}
+
+.meterButton {
+    border-radius: unset;
+    font-size: 1.7rem;
+    font-family: 'Courier New', Courier, monospace;
+    height: 2rem;
+    width: 2rem;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(130, 130, 130);
+    color: black
+}
+
+
+.leftMeterButton {
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+}
+
+.rightMeterButton {
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+}
+
+.meterCell {
+    /* aspect-ratio: 1/1; */
+    width: 10%;
+    height: 2rem;
+    display: inline-block;
+}
+
+.fillMeter {
+    background-color: rgb(19, 56, 43);
+    border-right: 1px solid rgb(73, 73, 73);
+}
+
+.unfillMeter {
+    background-color: rgb(73, 73, 73);
+}
