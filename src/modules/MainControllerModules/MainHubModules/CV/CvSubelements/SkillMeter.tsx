@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import "style/mainControllerModules/mainHubModules/CV/skillMeterStyle.css";
 
-export default function SkillMeter() {
-  const [skillLevel, setSkillLevel] = useState(0);
+interface IskillMeter {
+  skillLevel: number;
+}
+export default function SkillMeter({ skillLevel }: IskillMeter) {
+  const [skillLevelValue, setSkillLevelValue] = useState(skillLevel);
   const [meter, setMeter] = useState(fillMeter());
 
   useEffect(() => {
     setMeter(fillMeter());
-  }, [skillLevel]);
+  }, [skillLevelValue]);
 
   function fillMeter() {
     let meter = [];
@@ -16,7 +19,9 @@ export default function SkillMeter() {
       meter.push(
         <div
           className={
-            i <= skillLevel ? "fillMeter meterCell" : "unfillMeter meterCell"
+            i <= skillLevelValue
+              ? "fillMeter meterCell"
+              : "unfillMeter meterCell"
           }
         ></div>
       );
@@ -25,12 +30,12 @@ export default function SkillMeter() {
     return meter;
   }
 
-  function changeSkillLevel(change: string) {
-    if (change === "+" && skillLevel < 10) {
-      setSkillLevel((prev) => prev + 1);
+  function changeSkillLevelValue(change: string) {
+    if (change === "+" && skillLevelValue < 10) {
+      setSkillLevelValue((prev) => prev + 1);
     }
-    if (change === "-" && skillLevel > 0) {
-      setSkillLevel((prev) => prev - 1);
+    if (change === "-" && skillLevelValue > 0) {
+      setSkillLevelValue((prev) => prev - 1);
     }
   }
 
@@ -38,14 +43,14 @@ export default function SkillMeter() {
     <div className="skillMeterMainContainer">
       <button
         className="leftMeterButton meterButton"
-        onClick={() => changeSkillLevel("-")}
+        onClick={() => changeSkillLevelValue("-")}
       >
         -
       </button>
       <div className="skillMeter">{meter}</div>
       <button
         className="rightMeterButton meterButton"
-        onClick={() => changeSkillLevel("+")}
+        onClick={() => changeSkillLevelValue("+")}
       >
         +
       </button>

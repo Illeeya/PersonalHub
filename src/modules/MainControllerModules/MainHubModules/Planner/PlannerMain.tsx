@@ -75,17 +75,15 @@ export default function PlannerMain({
         {plannerDisplay !== "YEARLY" ? (
           <div className="datePickers">
             <input
-              className="invisiblePlannerDatePicker"
-              id="invisiblePlannerDatePicker"
+              className="visiblePlannerDatePicker"
+              id="visiblePlannerDatePicker"
               type={pickerType}
               value={
-                plannerDisplay === "MONTHLY"
-                  ? fullDatePicked["year"] + "-" + fullDatePicked["month"]
-                  : fullDatePicked["year"] +
-                    "-" +
-                    fullDatePicked["month"] +
-                    "-" +
-                    fullDatePicked["day"]
+                fullDatePicked["year"] +
+                "-" +
+                fullDatePicked["month"] +
+                "-" +
+                fullDatePicked["day"]
               }
               onChange={(event) => {
                 console.log(fullDatePicked);
@@ -99,7 +97,14 @@ export default function PlannerMain({
                 handleDateChange(event.target.value);
               }}
             />
-            <input
+            {plannerDisplay === "MONTHLY" ? (
+              <input
+                type="month"
+                className="monthInputOverlay"
+                value={fullDatePicked["year"] + "-" + fullDatePicked["month"]}
+              />
+            ) : null}
+            {/* <input
               className="visiblePlannerDatePicker"
               id="visiblePlannerDatePicker"
               type={pickerType}
@@ -113,7 +118,7 @@ export default function PlannerMain({
                     fullDatePicked["day"]
               }
               readOnly
-            />
+            /> */}
           </div>
         ) : (
           <div className="datePickers">

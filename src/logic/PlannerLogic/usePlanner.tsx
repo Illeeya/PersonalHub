@@ -6,7 +6,7 @@ export const useMainPlanner = () => {
   const pickerTypes: Record<string, string> = {
     DAILY: "date",
     WEEKLY: "date",
-    MONTHLY: "month",
+    MONTHLY: "date",
     YEARLY: "number",
   };
   const [plannerDisplay, setPlannerDisplay] = useState("DAILY");

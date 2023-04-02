@@ -1,9 +1,6 @@
 .skillMainContainer {
-    width: 25%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 100%;
-    gap: 1rem;
-    padding: 1rem 0;
     position: relative;
 }
 
@@ -34,8 +31,8 @@
     border-radius: unset;
     font-size: 1.7rem;
     font-family: 'Courier New', Courier, monospace;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     margin: 0;
     padding: 0;
     background-color: rgb(130, 130, 130);
@@ -56,7 +53,7 @@
 .meterCell {
     /* aspect-ratio: 1/1; */
     width: 10%;
-    height: 2rem;
+    height: 3rem;
     display: inline-block;
 }
 

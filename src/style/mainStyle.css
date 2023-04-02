@@ -10,3 +10,7 @@
   background-color: red;
   color: aliceblue;
 }
+
+#root button {
+  cursor: pointer;
+}

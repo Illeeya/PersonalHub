@@ -30,3 +30,33 @@
 .divider {
     border-top: dashed 1px rgba(240, 248, 255, 50%);
 }
+
+@keyframes sliderInput {
+    0% {
+        width: 0%;
+    }
+
+    /* 100% {} */
+}
+
+@keyframes fontAppear {
+    0% {
+        font-size: 1px
+    }
+}
+
+.skillsContainer {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    place-items: center;
+}
+
+.appear {
+    animation: 1s ease-in 0s 1 sliderInput;
+}
+
+.appear>button {
+    animation: 1s ease-in 0s 1 fontAppear;
+}
