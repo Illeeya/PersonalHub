@@ -1,40 +1,20 @@
+import { useCv } from "logic/CvLogic/useCv";
 import { useState } from "react";
 import "style/mainControllerModules/mainHubModules/CV/cvMainStyle.css";
-import AddNewSkill from "./CvSubelements/AddNewSkill";
+import NewSkillModal from "./CvSubelements/NewSkillModal";
 import Skill from "./CvSubelements/Skill";
 
 export default function CV() {
-  const [addingSkill, setAddingSkill] = useState(false);
-  const [skillList, setSkillList] = useState<
-    { skillName: string; skillLevel: number }[]
-  >([]);
-  const [skillObjects, setSkillObjects] = useState<JSX.Element[]>([]);
-
-  const addingStyle = {
-    width: "4rem",
-    height: "4rem",
-    lineHeight: "2rem",
-    fontSize: "2rem",
-  };
-
-  function addNewSkill(skillName: string) {
-    console.log("Adding new skill", skillName);
-    setSkillList((current) => [
-      ...current,
-      { skillName: skillName, skillLevel: 0 },
-    ]);
-    setSkillObjects((current) => [
-      ...current,
-      <Skill
-        key={skillName + Date.now()}
-        skillName={skillName + Date.now()}
-        skillLevel={0}
-      />,
-    ]);
-  }
+  const { addingSkill, setAddingSkill, skillObjects, addNewSkill } = useCv();
 
   return (
     <div className="CvMainContainer">
+      {addingSkill ? (
+        <NewSkillModal
+          addSkill={addNewSkill}
+          cancel={() => setAddingSkill(false)}
+        />
+      ) : null}
       <h2>Personal Info</h2>
 
       <div className="personalInfoContainer">
@@ -49,13 +29,10 @@ export default function CV() {
       <h2>Skills</h2>
       <div className="skillsContainer">
         {skillObjects}
-        {addingSkill ? (
-          <AddNewSkill handleAddNewSkill={addNewSkill} />
-        ) : (
-          <button style={addingStyle} onClick={() => setAddingSkill(true)}>
-            +
-          </button>
-        )}
+        <button className="skillAddButton" onClick={() => setAddingSkill(true)}>
+          +
+        </button>
+        {/* <AddNewSkill handleAddNewSkill={addNewSkill} /> */}
       </div>
       <h2>Experience</h2>
       <div className="educationContainer"></div>
