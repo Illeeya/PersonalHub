@@ -1,20 +1,25 @@
 import { useTaskHandler } from "logic/TaskListLogic/useTaskList";
 import { useState } from "react";
 import "style/mainControllerModules/mainHubStyle.css";
-import CV from "./MainHubModules/CV/CVMain";
 import MainHubHeader from "./MainHubModules/MainHubHeader";
 import NotebookMain from "./MainHubModules/Notebook/NotebookMain";
 import PlannerMain from "./MainHubModules/Planner/PlannerMain";
 import TaskListMain from "./MainHubModules/TaskList/TaskListMain";
 export default function MainHub() {
-  const { jsxTasksArray, jsxTasksArraySidebar, addTask } = useTaskHandler();
-  const [activeElement, setAcviteElement] = useState("hubElements");
+  const {
+    jsxTasksArray,
+    jsxTasksArraySidebar,
+    addTask,
+    activeElement,
+    handleActiveElementChange,
+  } = useTaskHandler();
+
   return (
     <div className="mainHubContainer">
       <MainHubHeader
         goBack={() => {
           console.log("?");
-          setAcviteElement("hubElements");
+          handleActiveElementChange("hubElements");
         }}
       />
 
@@ -23,36 +28,28 @@ export default function MainHub() {
           case "hubElements":
             return (
               <div className="hubElementsContainer">
-                <div
+                <button
                   className="hubElement"
                   onClick={() => {
-                    setAcviteElement("taskList");
+                    handleActiveElementChange("taskList");
                   }}
                 >
                   Task list
-                </div>
-                <div
+                </button>
+                <button
                   className="hubElement"
                   onClick={() => {
-                    setAcviteElement("planner");
+                    handleActiveElementChange("planner");
                   }}
                 >
                   Planner
-                </div>
-                <div
+                </button>
+                <button
                   className="hubElement"
-                  onClick={() => setAcviteElement("notebook")}
+                  onClick={() => handleActiveElementChange("notebook")}
                 >
                   Notebook
-                </div>
-                <div
-                  className="hubElement"
-                  onClick={() => setAcviteElement("cv")}
-                >
-                  CV
-                </div>
-                <div className="hubElement">E5</div>
-                <div className="hubElement">E6</div>
+                </button>
               </div>
             );
           case "taskList":
@@ -63,8 +60,6 @@ export default function MainHub() {
             return <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
           case "notebook":
             return <NotebookMain addTask={addTask} />;
-          case "cv":
-            return <CV />;
           default:
             return null;
         }

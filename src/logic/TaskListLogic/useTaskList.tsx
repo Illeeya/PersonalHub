@@ -23,12 +23,14 @@ export interface PlannerSideBarProps {
 }
 
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
-  localStorage.setItem("personalHubTasksList", JSON.stringify(taskArray));
+  const taskArray_ = taskArray.filter((task) => task.taskText !== "");
+  localStorage.setItem("personalHubTasksList", JSON.stringify(taskArray_));
 }
 
 // State Logic
 
 export const useTaskHandler = () => {
+  const [activeElement, setAcviteElement] = useState("hubElements");
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
   const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
     JSX.Element[]
@@ -36,6 +38,19 @@ export const useTaskHandler = () => {
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
+
+  function handleActiveElementChange(activeateElement: string) {
+    if (activeateElement === "hubElements") {
+      cleanTaskList();
+    }
+    setAcviteElement(activeateElement);
+  }
+
+  function cleanTaskList() {
+    setTasksObjectsArray((current) =>
+      current.filter((task) => task.taskText !== "")
+    );
+  }
 
   useEffect(() => {
     setJsxTasksArray(
@@ -86,12 +101,20 @@ export const useTaskHandler = () => {
       );
   }
   function addTask(taskText: string) {
-    let newTaskId = Date.now();
-    setTasksObjectsArray([
-      ...tasksObjectsArray,
-      { taskID: newTaskId, taskText: taskText },
-    ]);
+    if (!tasksObjectsArray.find((task) => task.taskText === "")) {
+      let newTaskId = Date.now();
+      setTasksObjectsArray([
+        ...tasksObjectsArray,
+        { taskID: newTaskId, taskText: taskText },
+      ]);
+    }
   }
 
-  return { jsxTasksArray, jsxTasksArraySidebar, addTask };
+  return {
+    jsxTasksArray,
+    jsxTasksArraySidebar,
+    addTask,
+    activeElement,
+    handleActiveElementChange,
+  };
 };
