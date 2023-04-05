@@ -30,16 +30,21 @@ export function useNotebook(addTask: (taskText: string) => void) {
   }
 
   function saveNotesToLocalStorage() {
-    localStorage.setItem("personalHubNotes", JSON.stringify(notesObjects));
+    const notesObjects_ = notesObjects.filter(
+      (note) => note.noteText.trim() !== ""
+    );
+    localStorage.setItem("personalHubNotes", JSON.stringify(notesObjects_));
   }
 
   function addNewNote() {
-    const dateNow = Date.now();
+    if (!notesObjects.find((note) => note.noteText.trim() === "")) {
+      const dateNow = Date.now();
 
-    setNotesObjects((notesObjects) => [
-      ...notesObjects,
-      { noteID: "nt" + dateNow, noteText: "" },
-    ]);
+      setNotesObjects((notesObjects) => [
+        ...notesObjects,
+        { noteID: "nt" + dateNow, noteText: "" },
+      ]);
+    }
   }
 
   function updateNote(noteID: string, noteText: string) {

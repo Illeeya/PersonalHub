@@ -22,8 +22,12 @@ export default function Note({
 
       <button
         onClick={() => {
-          addTask(noteText);
-          handleDelete(noteID);
+          if (noteText === "" || noteText.trim() === "") {
+            alert("Cannot taskify empty note!");
+          } else {
+            addTask(noteText);
+            handleDelete(noteID);
+          }
         }}
         className="noteButton noteTaskifyButton"
       >

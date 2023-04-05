@@ -23,7 +23,7 @@ export interface PlannerSideBarProps {
 }
 
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
-  const taskArray_ = taskArray.filter((task) => task.taskText !== "");
+  const taskArray_ = taskArray.filter((task) => task.taskText.trim() !== "");
   localStorage.setItem("personalHubTasksList", JSON.stringify(taskArray_));
 }
 
@@ -48,7 +48,7 @@ export const useTaskHandler = () => {
 
   function cleanTaskList() {
     setTasksObjectsArray((current) =>
-      current.filter((task) => task.taskText !== "")
+      current.filter((task) => task.taskText.trim() !== "")
     );
   }
 
@@ -101,7 +101,7 @@ export const useTaskHandler = () => {
       );
   }
   function addTask(taskText: string) {
-    if (!tasksObjectsArray.find((task) => task.taskText === "")) {
+    if (!tasksObjectsArray.find((task) => task.taskText.trim() === "")) {
       let newTaskId = Date.now();
       setTasksObjectsArray([
         ...tasksObjectsArray,
