@@ -1,7 +1,7 @@
 import {
   useMonthlyDisplay,
   monthlyDisplayProps,
-} from "logic/PlannerLogic/PlannerDisplays/usePlannerDisplays";
+} from "components/MainControllerComponents/MainHubComponents/Planner/PlannerDisplays/usePlannerDisplays";
 import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/monthlyDisplayStyle.css";
 export default function MonthlyDisplay({
   selectedDateProp,

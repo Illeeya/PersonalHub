@@ -1,7 +1,7 @@
 import {
   useWeeklyDisplay,
   weeklyDisplayProps,
-} from "logic/PlannerLogic/PlannerDisplays/usePlannerDisplays";
+} from "components/MainControllerComponents/MainHubComponents/Planner/PlannerDisplays/usePlannerDisplays";
 import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/weeklyDisplayStyle.css";
 
 export default function WeeklyDisplay({

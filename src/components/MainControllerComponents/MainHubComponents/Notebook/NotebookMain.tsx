@@ -1,5 +1,5 @@
-import { useNotebook } from "logic/NotebookLogic/useNotebook";
-import { AddTaskProp } from "logic/TaskListLogic/useTaskList";
+import { useNotebook } from "components/MainControllerComponents/MainHubComponents/Notebook/useNotebook";
+import { AddTaskProp } from "components/MainControllerComponents/useMainHub";
 
 export default function NotebookMain({ addTask }: AddTaskProp) {
   const { notes, addNewNote } = useNotebook(addTask);

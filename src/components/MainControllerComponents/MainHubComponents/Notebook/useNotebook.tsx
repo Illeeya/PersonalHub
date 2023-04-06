@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useEffect } from "react";
-import Note from "modules/MainControllerModules/MainHubModules/Notebook/SubModules/Note";
-import { AddTaskProp } from "logic/TaskListLogic/useTaskList";
+import Note from "components/MainControllerComponents/MainHubComponents/Notebook/Note";
+import { AddTaskProp } from "components/MainControllerComponents/useMainHub";
 
 export function useNotebook(addTask: (taskText: string) => void) {
   const [notesObjects, setNotesObjects] = useState<

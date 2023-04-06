@@ -1,10 +1,9 @@
-import { useTaskHandler } from "logic/TaskListLogic/useTaskList";
-import { useState } from "react";
+import { useTaskHandler } from "components/MainControllerComponents/useMainHub";
 import "style/mainControllerModules/mainHubStyle.css";
-import MainHubHeader from "./MainHubModules/MainHubHeader";
-import NotebookMain from "./MainHubModules/Notebook/NotebookMain";
-import PlannerMain from "./MainHubModules/Planner/PlannerMain";
-import TaskListMain from "./MainHubModules/TaskList/TaskListMain";
+import MainHubHeader from "./MainHubComponents/MainHubHeader";
+import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";
+import PlannerMain from "./MainHubComponents/Planner/PlannerMain";
+import TaskListMain from "./MainHubComponents/TaskList/TaskListMain";
 export default function MainHub() {
   const {
     jsxTasksArray,

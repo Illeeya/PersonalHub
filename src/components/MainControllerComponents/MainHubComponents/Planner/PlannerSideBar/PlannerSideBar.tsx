@@ -1,7 +1,5 @@
-import { PlannerSideBarProps } from "logic/TaskListLogic/useTaskList";
+import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
 import "style/mainControllerModules/mainHubModules/Planner/PlannerSideBar/plannerSideBarMainStyle.css";
-
-import SideBarTask from "./SideBarTask";
 
 export default function PlannerSideBar({
   jsxTasksArraySidebar,

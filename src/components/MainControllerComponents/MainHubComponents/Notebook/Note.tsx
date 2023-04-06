@@ -1,4 +1,7 @@
-import { NoteProps, useNote } from "logic/NotebookLogic/useNotebook";
+import {
+  NoteProps,
+  useNote,
+} from "components/MainControllerComponents/MainHubComponents/Notebook/useNotebook";
 import "style/mainControllerModules/mainHubModules/Notebook/notebookMainStyle.css";
 
 export default function Note({

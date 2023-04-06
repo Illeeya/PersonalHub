@@ -1,8 +1,8 @@
 import "style/mainControllerModules/mainHubModules/mainHubHeaderStyle.css";
-interface Props {
+interface IMainHubHeader {
   goBack: () => void;
 }
-export default function MainHubHeader({ goBack }: Props) {
+export default function MainHubHeader({ goBack }: IMainHubHeader) {
   return (
     <>
       <div className="mainHubHeaderContainer">

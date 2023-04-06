@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
-import Task from "modules/MainControllerModules/MainHubModules/TaskList/Task";
-import SideBarTask from "modules/MainControllerModules/MainHubModules/Planner/PlannerSideBar/SideBarTask";
+import Task from "components/MainControllerComponents/MainHubComponents/TaskList/Task";
+import SideBarTask from "components/MainControllerComponents/MainHubComponents/Planner/PlannerSideBar/SideBarTask";
 
 export interface TaskObject {
   taskID: number;
   taskText: string;
 }
 
-export interface TaskProps extends TaskObject {
-  taskHandler: (taskID: number, taskText: string, actionType: string) => void;
-}
-
 export interface AddTaskProp {
   addTask: (taskText: string) => void;
-}
-export interface TaskListMainProps extends AddTaskProp {
-  jsxTasksArray: JSX.Element[];
 }
 
 export interface PlannerSideBarProps {

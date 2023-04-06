@@ -1,10 +1,13 @@
 import "style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
-import { TaskListMainProps } from "logic/TaskListLogic/useTaskList";
+interface ITaskListMain {
+  addTask: (taskText: string) => void;
+  jsxTasksArray: JSX.Element[];
+}
 
 export default function TaskListMain({
   jsxTasksArray,
   addTask,
-}: TaskListMainProps) {
+}: ITaskListMain) {
   return (
     <div className="taskListMainContainer">
       <div className="courtain"></div>

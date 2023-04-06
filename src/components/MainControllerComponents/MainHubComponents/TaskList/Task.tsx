@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import { TaskProps } from "logic/TaskListLogic/useTaskList";
 import "style/mainControllerModules/mainHubModules/TaskList/taskStyle.css";
+import { useTask } from "./useTask";
 
-export default function Task({ taskID, taskText, taskHandler }: TaskProps) {
-  const [taskValue, setTaskValue] = useState<string>(taskText);
-
-  useEffect(() => {
-    taskHandler(taskID, taskValue, "MODIFY");
-  }, [taskValue]);
+export interface ITask {
+  taskID: number;
+  taskText: string;
+  taskHandler: (taskID: number, taskText: string, actionType: string) => void;
+}
+export default function Task({ taskID, taskText, taskHandler }: ITask) {
+  const { taskValue, setTaskValue } = useTask({
+    taskID,
+    taskText,
+    taskHandler,
+  });
 
   return (
     <div className="task">

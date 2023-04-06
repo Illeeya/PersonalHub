@@ -1,26 +1,20 @@
 import React from "react";
-import { useMainPlanner } from "logic/PlannerLogic/usePlanner";
+import { useMainPlanner } from "components/MainControllerComponents/MainHubComponents/Planner/usePlannerMain";
 import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
 import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
-import { PlannerSideBarProps } from "logic/TaskListLogic/useTaskList";
+import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
 
-const DailyDisplay = React.lazy(
-  () => import("./PlannerDisplays/DailyDisplay/DailyDisplay")
-);
+const DailyDisplay = React.lazy(() => import("./PlannerDisplays/DailyDisplay"));
 const MonthlyDisplay = React.lazy(
-  () => import("./PlannerDisplays/DailyDisplay/MonthlyDisplay")
+  () => import("./PlannerDisplays/MonthlyDisplay")
 );
 const WeeklyDisplay = React.lazy(
-  () => import("./PlannerDisplays/DailyDisplay/WeeklyDisplay")
+  () => import("./PlannerDisplays/WeeklyDisplay")
 );
 const YearlyDisplay = React.lazy(
-  () => import("./PlannerDisplays/DailyDisplay/YearlyDisplay")
+  () => import("./PlannerDisplays/YearlyDisplay")
 );
 
-// import DailyDisplay from "./PlannerDisplays/DailyDisplay/DailyDisplay";
-// import MonthlyDisplay from "./PlannerDisplays/DailyDisplay/MonthlyDisplay";
-// import WeeklyDisplay from "./PlannerDisplays/DailyDisplay/WeeklyDisplay";
-// import YearlyDisplay from "./PlannerDisplays/DailyDisplay/YearlyDisplay";
 export default function PlannerMain({
   jsxTasksArraySidebar,
 }: PlannerSideBarProps) {
