@@ -1,4 +1,4 @@
-import "style/mainControllerModules/mainHubModules/mainHubHeaderStyle.css";
+import "./mainHubHeaderStyle.css";
 interface IMainHubHeader {
   goBack: () => void;
 }

@@ -1,4 +1,4 @@
-import "style/mainControllerModules/authenticationStyle.css";
+import "./authenticationStyle.css";
 
 interface Iauthentication {
   logIn: () => void;

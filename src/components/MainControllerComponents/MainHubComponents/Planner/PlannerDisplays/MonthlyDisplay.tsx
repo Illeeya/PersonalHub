@@ -2,7 +2,7 @@ import {
   useMonthlyDisplay,
   monthlyDisplayProps,
 } from "components/MainControllerComponents/MainHubComponents/Planner/PlannerDisplays/usePlannerDisplays";
-import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/monthlyDisplayStyle.css";
+import "./monthlyDisplayStyle.css";
 export default function MonthlyDisplay({
   selectedDateProp,
   dayChange,

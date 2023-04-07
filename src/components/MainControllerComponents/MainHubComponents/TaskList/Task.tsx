@@ -1,4 +1,4 @@
-import "style/mainControllerModules/mainHubModules/TaskList/taskStyle.css";
+import "./taskStyle.css";
 import { useTask } from "./useTask";
 
 export interface ITask {

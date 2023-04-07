@@ -1,4 +1,4 @@
-import "style/mainControllerModules/mainHubModules/TaskList/taskListMainStyle.css";
+import "./taskListMainStyle.css";
 interface ITaskListMain {
   addTask: (taskText: string) => void;
   jsxTasksArray: JSX.Element[];

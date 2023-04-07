@@ -2,7 +2,7 @@ import {
   NoteProps,
   useNote,
 } from "components/MainControllerComponents/MainHubComponents/Notebook/useNotebook";
-import "style/mainControllerModules/mainHubModules/Notebook/notebookMainStyle.css";
+import "./noteStyle.css";
 
 export default function Note({
   noteID,

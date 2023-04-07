@@ -1,6 +1,6 @@
 import { useNotebook } from "components/MainControllerComponents/MainHubComponents/Notebook/useNotebook";
 import { AddTaskProp } from "components/MainControllerComponents/useMainHub";
-
+import "./notebookMainStyle.css";
 export default function NotebookMain({ addTask }: AddTaskProp) {
   const { notes, addNewNote } = useNotebook(addTask);
   return (

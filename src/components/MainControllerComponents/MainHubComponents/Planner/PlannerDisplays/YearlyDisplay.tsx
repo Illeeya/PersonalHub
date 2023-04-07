@@ -2,7 +2,7 @@ import {
   useYearlyDisplay,
   yearlyDisplayProps,
 } from "components/MainControllerComponents/MainHubComponents/Planner/PlannerDisplays/usePlannerDisplays";
-import "style/mainControllerModules/mainHubModules/Planner/PlannerDisplays/yearlyDisplayStyle.css";
+import "./yearlyDisplayStyle.css";
 
 export default function YearlyDisplay({
   monthChange,

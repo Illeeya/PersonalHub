@@ -1,6 +1,6 @@
 import React from "react";
 import { useMainPlanner } from "components/MainControllerComponents/MainHubComponents/Planner/usePlannerMain";
-import "style/mainControllerModules/mainHubModules/Planner/plannerMainStyle.css";
+import "./plannerMainStyle.css";
 import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
 import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
 

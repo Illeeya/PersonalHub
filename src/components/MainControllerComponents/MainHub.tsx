@@ -1,5 +1,5 @@
 import { useTaskHandler } from "components/MainControllerComponents/useMainHub";
-import "style/mainControllerModules/mainHubStyle.css";
+import "./mainHubStyle.css";
 import MainHubHeader from "./MainHubComponents/MainHubHeader";
 import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";
 import PlannerMain from "./MainHubComponents/Planner/PlannerMain";

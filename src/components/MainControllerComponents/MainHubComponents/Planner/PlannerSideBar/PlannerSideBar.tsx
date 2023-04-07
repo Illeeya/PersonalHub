@@ -1,5 +1,5 @@
 import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
-import "style/mainControllerModules/mainHubModules/Planner/PlannerSideBar/plannerSideBarMainStyle.css";
+import "./plannerSideBarMainStyle.css";
 
 export default function PlannerSideBar({
   jsxTasksArraySidebar,
