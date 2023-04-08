@@ -1,4 +1,4 @@
-import { useLogin } from "components/useMainController";
+import { useLogin } from "./useMainController";
 import Authentication from "./MainControllerComponents/Authentication";
 import MainHub from "./MainControllerComponents/MainHub";
 

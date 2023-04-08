@@ -1,8 +1,10 @@
-import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
 import "./plannerSideBarMainStyle.css";
 
+interface IPlannerSideBar {
+  jsxTasksArraySidebar: JSX.Element[];
+}
 export default function PlannerSideBar({
   jsxTasksArraySidebar,
-}: PlannerSideBarProps) {
+}: IPlannerSideBar) {
   return <div className="plannerSideBarContainer">{jsxTasksArraySidebar}</div>;
 }

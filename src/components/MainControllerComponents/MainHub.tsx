@@ -1,4 +1,4 @@
-import { useTaskHandler } from "components/MainControllerComponents/useMainHub";
+import { useTaskHandler } from "./useMainHub";
 import "./mainHubStyle.css";
 import MainHubHeader from "./MainHubComponents/MainHubHeader";
 import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";

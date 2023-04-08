@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
-import Task from "components/MainControllerComponents/MainHubComponents/TaskList/Task";
-import SideBarTask from "components/MainControllerComponents/MainHubComponents/Planner/PlannerSideBar/SideBarTask";
+import Task from "./MainHubComponents/TaskList/Task";
+import SideBarTask from "./MainHubComponents/Planner/PlannerSideBar/SideBarTask";
 
-export interface TaskObject {
+type TaskObject = {
   taskID: number;
   taskText: string;
-}
-
-export interface AddTaskProp {
-  addTask: (taskText: string) => void;
-}
-
-export interface PlannerSideBarProps {
-  jsxTasksArraySidebar: JSX.Element[];
-}
+};
 
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
   const taskArray_ = taskArray.filter((task) => task.taskText.trim() !== "");

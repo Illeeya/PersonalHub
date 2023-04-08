@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, useEffect } from "react";
-import Note from "components/MainControllerComponents/MainHubComponents/Notebook/Note";
-import { AddTaskProp } from "components/MainControllerComponents/useMainHub";
+import Note from "./Note";
 
 export function useNotebook(addTask: (taskText: string) => void) {
   const [notesObjects, setNotesObjects] = useState<
@@ -58,13 +57,6 @@ export function useNotebook(addTask: (taskText: string) => void) {
   }
 
   return { addNewNote, notes };
-}
-
-export interface NoteProps extends AddTaskProp {
-  noteID: string;
-  noteText: string;
-  handleDelete: (noteID: string) => void;
-  handleChange: (noteID: string, noteText: string) => void;
 }
 
 export function useNote() {

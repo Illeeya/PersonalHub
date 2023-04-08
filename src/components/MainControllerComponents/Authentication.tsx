@@ -1,10 +1,10 @@
 import "./authenticationStyle.css";
 
-interface Iauthentication {
+interface IAuthentication {
   logIn: () => void;
 }
 
-export default function Authentication({ logIn }: Iauthentication) {
+export default function Authentication({ logIn }: IAuthentication) {
   return (
     <div className="authenticationContainer">
       <input type="password" name="pin" id="pin" />

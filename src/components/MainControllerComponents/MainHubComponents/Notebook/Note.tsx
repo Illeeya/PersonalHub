@@ -1,16 +1,20 @@
-import {
-  NoteProps,
-  useNote,
-} from "components/MainControllerComponents/MainHubComponents/Notebook/useNotebook";
+import { useNote } from "./useNotebook";
 import "./noteStyle.css";
 
+export interface INote {
+  noteID: string;
+  noteText: string;
+  addTask: (taskText: string) => void;
+  handleDelete: (noteID: string) => void;
+  handleChange: (noteID: string, noteText: string) => void;
+}
 export default function Note({
   noteID,
   noteText,
   handleDelete,
   handleChange,
   addTask,
-}: NoteProps) {
+}: INote) {
   const { scaleTextArea } = useNote();
   return (
     <div className="noteContainer">

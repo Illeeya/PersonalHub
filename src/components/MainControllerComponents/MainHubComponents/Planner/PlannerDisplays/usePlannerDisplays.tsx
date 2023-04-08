@@ -18,11 +18,6 @@ export function useDailyDisplay() {
   return { dailyTasks };
 }
 
-export interface weeklyDisplayProps {
-  selectedDateProp: string;
-  dayChange: (day: string) => void;
-  displayChange: (display: string) => void;
-}
 export function useWeeklyDisplay(
   curentDate: string,
   dayChange: (day: string) => void,
@@ -65,12 +60,6 @@ export function useWeeklyDisplay(
   return { weeklyTasks };
 }
 
-export interface monthlyDisplayProps {
-  selectedDateProp: string;
-
-  dayChange: (day: string) => void;
-  displayChange: (display: string) => void;
-}
 export function useMonthlyDisplay(
   passedDate: string,
   dayChange: (day: string) => void,
@@ -115,11 +104,6 @@ export function useMonthlyDisplay(
   return { daysArray, firstDay };
 }
 
-export interface yearlyDisplayProps {
-  monthChange: (month: string) => void;
-  displayChange: (display: string) => void;
-  pickedYear: string;
-}
 export function useYearlyDisplay(
   monthChange: (month: string) => void,
   displayChange: (display: string) => void,

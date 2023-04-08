@@ -1,6 +1,9 @@
-import { TaskObject } from "components/MainControllerComponents/useMainHub";
 import "./sideBarTaskStyle.css";
 
-export default function SideBarTask({ taskText }: TaskObject) {
+interface ISideBarTask {
+  taskID: number;
+  taskText: string;
+}
+export default function SideBarTask({ taskText }: ISideBarTask) {
   return <div className="sideBarTask">{taskText}</div>;
 }

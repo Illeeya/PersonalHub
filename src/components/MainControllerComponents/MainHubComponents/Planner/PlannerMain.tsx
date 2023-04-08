@@ -1,8 +1,7 @@
 import React from "react";
-import { useMainPlanner } from "components/MainControllerComponents/MainHubComponents/Planner/usePlannerMain";
+import { useMainPlanner } from "./usePlannerMain";
 import "./plannerMainStyle.css";
 import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
-import { PlannerSideBarProps } from "components/MainControllerComponents/useMainHub";
 
 const DailyDisplay = React.lazy(() => import("./PlannerDisplays/DailyDisplay"));
 const MonthlyDisplay = React.lazy(
@@ -15,9 +14,11 @@ const YearlyDisplay = React.lazy(
   () => import("./PlannerDisplays/YearlyDisplay")
 );
 
-export default function PlannerMain({
-  jsxTasksArraySidebar,
-}: PlannerSideBarProps) {
+interface IPlanner {
+  jsxTasksArraySidebar: JSX.Element[];
+}
+
+export default function PlannerMain({ jsxTasksArraySidebar }: IPlanner) {
   const {
     plannerDisplay,
     setPlannerDisplay,
