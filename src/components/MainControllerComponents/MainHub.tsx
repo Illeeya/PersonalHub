@@ -11,6 +11,7 @@ export default function MainHub() {
     addTask,
     activeElement,
     handleActiveElementChange,
+    tasksProvider,
   } = useTaskHandler();
 
   return (
@@ -56,7 +57,11 @@ export default function MainHub() {
               <TaskListMain jsxTasksArray={jsxTasksArray} addTask={addTask} />
             );
           case "planner":
-            return <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
+            return (
+              <tasksProvider>
+                <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
+              </tasksProvider>
+            );
           case "notebook":
             return <NotebookMain addTask={addTask} />;
           default:

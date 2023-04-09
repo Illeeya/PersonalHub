@@ -1,3 +1,5 @@
+import DailyTasksContainer from "./DailyTasksContainer";
+
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 export function useDailyDisplay() {
   const dailyTasks: JSX.Element[] = [];
@@ -10,7 +12,7 @@ export function useDailyDisplay() {
         className="hourTaskContainer"
       >
         <p>{("0" + i).slice(-2) + ":00"}</p>
-        <input type="text" id={"hour" + i} maxLength={30} />
+        <DailyTasksContainer />
       </label>
     );
   }

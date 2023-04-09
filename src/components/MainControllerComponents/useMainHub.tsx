@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 import Task from "./MainHubComponents/TaskList/Task";
 import SideBarTask from "./MainHubComponents/Planner/PlannerSideBar/SideBarTask";
 
 type TaskObject = {
   taskID: number;
   taskText: string;
+  startTime: Date;
+  endTime: Date;
 };
+
+const startDateConst = new Date(2023, 3, 9, 11, 0, 0); // Note: month is zero-indexed, so 3 represents April
+const endDateConst = new Date(2023, 3, 9, 14, 0, 0);
 
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
   const taskArray_ = taskArray.filter((task) => task.taskText.trim() !== "");
@@ -15,6 +20,7 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 // State Logic
 
 export const useTaskHandler = () => {
+  const tasksContext = createContext<TaskObject[]>([]);
   const [activeElement, setAcviteElement] = useState("hubElements");
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
   const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
@@ -23,6 +29,17 @@ export const useTaskHandler = () => {
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
+
+  function tasksProvider() {
+    const [providerTasks, setProviderTasks] = useState<TaskObject[]>(
+      JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
+    );
+
+    useEffect(() => {
+      setProviderTasks(tasksObjectsArray);
+    }, [tasksObjectsArray]);
+    return <tasksContext.Provider value={providerTasks} />;
+  }
 
   function handleActiveElementChange(activeateElement: string) {
     if (activeateElement === "hubElements") {
@@ -50,6 +67,7 @@ export const useTaskHandler = () => {
         );
       })
     );
+
     setJsxTasksArraySidebar(
       tasksObjectsArray.map((task) => {
         return (
@@ -57,6 +75,8 @@ export const useTaskHandler = () => {
             key={task.taskID}
             taskID={task.taskID}
             taskText={task.taskText}
+            startTime={startDateConst}
+            endTime={endDateConst}
           />
         );
       })
@@ -74,7 +94,12 @@ export const useTaskHandler = () => {
       setTasksObjectsArray((prevTasksObjectsArray) =>
         prevTasksObjectsArray.map((task) => {
           if (task.taskID === taskID)
-            return { taskID: taskID, taskText: taskText };
+            return {
+              taskID: taskID,
+              taskText: taskText,
+              startTime: startDateConst,
+              endTime: endDateConst,
+            };
           else return task;
         })
       );
@@ -90,7 +115,12 @@ export const useTaskHandler = () => {
       let newTaskId = Date.now();
       setTasksObjectsArray([
         ...tasksObjectsArray,
-        { taskID: newTaskId, taskText: taskText },
+        {
+          taskID: newTaskId,
+          taskText: taskText,
+          startTime: startDateConst,
+          endTime: endDateConst,
+        },
       ]);
     }
   }
@@ -101,5 +131,6 @@ export const useTaskHandler = () => {
     addTask,
     activeElement,
     handleActiveElementChange,
+    tasksProvider,
   };
 };
