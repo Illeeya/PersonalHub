@@ -1,10 +1,7 @@
 import "./plannerSideBarMainStyle.css";
+import { usePlannerSideBar } from "./usePlannerSideBar";
 
-interface IPlannerSideBar {
-  jsxTasksArraySidebar: JSX.Element[];
-}
-export default function PlannerSideBar({
-  jsxTasksArraySidebar,
-}: IPlannerSideBar) {
-  return <div className="plannerSideBarContainer">{jsxTasksArraySidebar}</div>;
+export default function PlannerSideBar() {
+  const { sideBarTasks } = usePlannerSideBar();
+  return <div className="plannerSideBarContainer">{sideBarTasks}</div>;
 }

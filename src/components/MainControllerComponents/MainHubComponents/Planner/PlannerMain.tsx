@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useContext } from "react";
 import { useMainPlanner } from "./usePlannerMain";
 import "./plannerMainStyle.css";
 import PlannerSideBar from "./PlannerSideBar/PlannerSideBar";
@@ -14,11 +14,7 @@ const YearlyDisplay = React.lazy(
   () => import("./PlannerDisplays/YearlyDisplay")
 );
 
-interface IPlanner {
-  jsxTasksArraySidebar: JSX.Element[];
-}
-
-export default function PlannerMain({ jsxTasksArraySidebar }: IPlanner) {
+export default function PlannerMain() {
   const {
     plannerDisplay,
     setPlannerDisplay,
@@ -30,7 +26,7 @@ export default function PlannerMain({ jsxTasksArraySidebar }: IPlanner) {
   return (
     <div className="plannerMainContainer">
       <div className="plannerTasksSidebar">
-        <PlannerSideBar jsxTasksArraySidebar={jsxTasksArraySidebar} />
+        <PlannerSideBar />
       </div>
       <div className="plannerContainer">
         <div className="plannerDisplayPicker">

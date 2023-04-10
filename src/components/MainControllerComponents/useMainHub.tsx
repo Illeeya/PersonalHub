@@ -9,7 +9,7 @@ type TaskObject = {
   endTime: Date;
 };
 
-const startDateConst = new Date(2023, 3, 9, 11, 0, 0); // Note: month is zero-indexed, so 3 represents April
+const startDateConst = new Date(2023, 3, 9, 11, 0, 0);
 const endDateConst = new Date(2023, 3, 9, 14, 0, 0);
 
 export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
@@ -20,7 +20,6 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 // State Logic
 
 export const useTaskHandler = () => {
-  const tasksContext = createContext<TaskObject[]>([]);
   const [activeElement, setAcviteElement] = useState("hubElements");
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
   const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
@@ -30,16 +29,7 @@ export const useTaskHandler = () => {
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
 
-  function tasksProvider() {
-    const [providerTasks, setProviderTasks] = useState<TaskObject[]>(
-      JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
-    );
-
-    useEffect(() => {
-      setProviderTasks(tasksObjectsArray);
-    }, [tasksObjectsArray]);
-    return <tasksContext.Provider value={providerTasks} />;
-  }
+  const TasksArrayContext = createContext<TaskObject[]>(tasksObjectsArray);
 
   function handleActiveElementChange(activeateElement: string) {
     if (activeateElement === "hubElements") {
@@ -67,20 +57,19 @@ export const useTaskHandler = () => {
         );
       })
     );
-
-    setJsxTasksArraySidebar(
-      tasksObjectsArray.map((task) => {
-        return (
-          <SideBarTask
-            key={task.taskID}
-            taskID={task.taskID}
-            taskText={task.taskText}
-            startTime={startDateConst}
-            endTime={endDateConst}
-          />
-        );
-      })
-    );
+    // setJsxTasksArraySidebar(
+    //   tasksObjectsArray.map((task) => {
+    //     return (
+    //       <SideBarTask
+    //         key={task.taskID}
+    //         taskID={task.taskID}
+    //         taskText={task.taskText}
+    //         startTime={startDateConst}
+    //         endTime={endDateConst}
+    //       />
+    //     );
+    //   })
+    // );
 
     saveTasksToLocalStorage(tasksObjectsArray);
   }, [tasksObjectsArray]);
@@ -131,6 +120,7 @@ export const useTaskHandler = () => {
     addTask,
     activeElement,
     handleActiveElementChange,
-    tasksProvider,
+    tasksObjectsArray,
+    TasksArrayContext,
   };
 };

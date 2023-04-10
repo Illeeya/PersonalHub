@@ -7,11 +7,11 @@ import TaskListMain from "./MainHubComponents/TaskList/TaskListMain";
 export default function MainHub() {
   const {
     jsxTasksArray,
-    jsxTasksArraySidebar,
     addTask,
     activeElement,
     handleActiveElementChange,
-    tasksProvider,
+    TasksArrayContext,
+    tasksObjectsArray,
   } = useTaskHandler();
 
   return (
@@ -58,9 +58,9 @@ export default function MainHub() {
             );
           case "planner":
             return (
-              <tasksProvider>
-                <PlannerMain jsxTasksArraySidebar={jsxTasksArraySidebar} />;
-              </tasksProvider>
+              // <TasksArrayContext.Provider value={tasksObjectsArray}>
+              <PlannerMain />
+              // </TasksArrayContext.Provider>
             );
           case "notebook":
             return <NotebookMain addTask={addTask} />;
