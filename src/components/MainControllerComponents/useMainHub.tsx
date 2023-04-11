@@ -22,9 +22,9 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 export const useTaskHandler = () => {
   const [activeElement, setAcviteElement] = useState("hubElements");
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
-  const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
-    JSX.Element[]
-  >([]);
+  // const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
+  //   JSX.Element[]
+  // >([]);
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
@@ -52,6 +52,8 @@ export const useTaskHandler = () => {
             key={task.taskID}
             taskID={task.taskID}
             taskText={task.taskText}
+            startTime={task.startTime}
+            endTime={task.endTime}
             taskHandler={handleTaskChange}
           />
         );
@@ -86,8 +88,8 @@ export const useTaskHandler = () => {
             return {
               taskID: taskID,
               taskText: taskText,
-              startTime: startDateConst,
-              endTime: endDateConst,
+              startTime: task.startTime,
+              endTime: task.endTime,
             };
           else return task;
         })
@@ -116,7 +118,7 @@ export const useTaskHandler = () => {
 
   return {
     jsxTasksArray,
-    jsxTasksArraySidebar,
+    // jsxTasksArraySidebar,
     addTask,
     activeElement,
     handleActiveElementChange,

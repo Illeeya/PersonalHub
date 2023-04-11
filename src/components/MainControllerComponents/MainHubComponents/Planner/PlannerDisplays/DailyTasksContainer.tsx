@@ -1,7 +1,14 @@
 import "./dailyDisplayStyle.css";
 import { useDailyTasksContainer } from "./useDailyTasksContainer";
 
-export default function DailyTasksContainer() {
-  const { tasksAmount } = useDailyTasksContainer();
-  return <div className="dailyTaskContainer">{tasksAmount}</div>; // classname='newModuleMainContainer'
+interface IDailyTasksContainer {
+  date: string;
+  hour: Number;
+}
+export default function DailyTasksContainer({
+  date,
+  hour,
+}: IDailyTasksContainer) {
+  const { tasks } = useDailyTasksContainer(date, hour);
+  return <div className="dailyTaskContainer">{tasks()}</div>; // classname='newModuleMainContainer'
 }

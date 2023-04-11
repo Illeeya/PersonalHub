@@ -150,7 +150,15 @@ export default function PlannerMain() {
             case "DAILY":
               return (
                 <React.Suspense fallback={<div>Loading...</div>}>
-                  <DailyDisplay />
+                  <DailyDisplay
+                    date={
+                      fullDatePicked["year"] +
+                      "-" +
+                      fullDatePicked["month"] +
+                      "-" +
+                      fullDatePicked["day"]
+                    }
+                  />
                 </React.Suspense>
               );
             case "WEEKLY":

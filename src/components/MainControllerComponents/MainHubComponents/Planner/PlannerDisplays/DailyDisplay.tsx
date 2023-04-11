@@ -1,8 +1,11 @@
 import "./dailyDisplayStyle.css";
 import { useDailyDisplay } from "./usePlannerDisplays";
 
-export default function DailyDisplay() {
-  const { dailyTasks } = useDailyDisplay();
+interface IDailyDisplay {
+  date: string;
+}
+export default function DailyDisplay({ date }: IDailyDisplay) {
+  const { dailyTasks } = useDailyDisplay(date);
 
   return <div className="dailyDisplayContainer">{dailyTasks}</div>;
 }
