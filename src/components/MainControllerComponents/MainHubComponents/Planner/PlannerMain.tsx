@@ -14,7 +14,10 @@ const YearlyDisplay = React.lazy(
   () => import("./PlannerDisplays/YearlyDisplay")
 );
 
-export default function PlannerMain() {
+interface IPlannerMain {
+  tester: (id: number, sort: number) => void;
+}
+export default function PlannerMain({ tester }: IPlannerMain) {
   const {
     plannerDisplay,
     setPlannerDisplay,
@@ -158,6 +161,7 @@ export default function PlannerMain() {
                       "-" +
                       fullDatePicked["day"]
                     }
+                    tester={tester}
                   />
                 </React.Suspense>
               );

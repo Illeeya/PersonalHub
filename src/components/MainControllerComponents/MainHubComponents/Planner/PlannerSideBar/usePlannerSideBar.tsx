@@ -17,6 +17,7 @@ export function usePlannerSideBar() {
             taskText={task.taskText}
             startTime={task.startTime}
             endTime={task.endTime}
+            sortNumber={task.sortNumber}
           />
         );
       })

@@ -5,18 +5,20 @@ interface ISideBarTask {
   taskText: string;
   startTime: Date;
   endTime: Date;
+  sortNumber: Number | null;
 }
 export default function SideBarTask({
   taskText,
   startTime,
   endTime,
+  sortNumber,
 }: ISideBarTask) {
   return (
     <div
-      onClick={() => alert(`${startTime} - ${endTime}`)}
+      onClick={() => alert(`${startTime} - ${endTime} - ${sortNumber}`)}
       className="sideBarTask"
     >
-      {taskText}
+      {taskText + sortNumber}
     </div>
   );
 }

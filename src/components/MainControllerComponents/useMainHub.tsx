@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import Task from "./MainHubComponents/TaskList/Task";
-import SideBarTask from "./MainHubComponents/Planner/PlannerSideBar/SideBarTask";
 
-type TaskObject = {
+export type TaskObject = {
   taskID: number;
   taskText: string;
   startTime: Date;
   endTime: Date;
+  sortNumber: number | null;
 };
 
 const startDateConst = new Date(2023, 3, 9, 11, 0, 0);
@@ -22,14 +22,28 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 export const useTaskHandler = () => {
   const [activeElement, setAcviteElement] = useState("hubElements");
   const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
-  // const [jsxTasksArraySidebar, setJsxTasksArraySidebar] = useState<
-  //   JSX.Element[]
-  // >([]);
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
 
   const TasksArrayContext = createContext<TaskObject[]>(tasksObjectsArray);
+
+  function test(id: number, sort: number) {
+    console.log(id, sort);
+    setTasksObjectsArray((prevTasksObjectsArray) =>
+      prevTasksObjectsArray.map((task) => {
+        if (task.taskID === id)
+          return {
+            taskID: id,
+            taskText: task.taskText,
+            startTime: task.startTime,
+            endTime: task.endTime,
+            sortNumber: sort,
+          };
+        else return task;
+      })
+    );
+  }
 
   function handleActiveElementChange(activeateElement: string) {
     if (activeateElement === "hubElements") {
@@ -90,6 +104,7 @@ export const useTaskHandler = () => {
               taskText: taskText,
               startTime: task.startTime,
               endTime: task.endTime,
+              sortNumber: task.sortNumber,
             };
           else return task;
         })
@@ -111,6 +126,7 @@ export const useTaskHandler = () => {
           taskText: taskText,
           startTime: startDateConst,
           endTime: endDateConst,
+          sortNumber: null,
         },
       ]);
     }
@@ -124,5 +140,6 @@ export const useTaskHandler = () => {
     handleActiveElementChange,
     tasksObjectsArray,
     TasksArrayContext,
+    test,
   };
 };

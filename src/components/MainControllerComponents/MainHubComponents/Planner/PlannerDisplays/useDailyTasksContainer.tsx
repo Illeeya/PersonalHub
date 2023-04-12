@@ -1,25 +1,29 @@
 import { useTaskHandler } from "components/MainControllerComponents/useMainHub";
 import { useContext, useState } from "react";
 
-export function useDailyTasksContainer(date: string, hour: Number) {
+export function useDailyTasksContainer(
+  date: string,
+  hour: Number,
+  tester: (id: number, sort: number) => void
+) {
   const { TasksArrayContext } = useTaskHandler();
   const jsxTasksArray = useContext(TasksArrayContext);
   const [tasksAmount, setTasksAmount] = useState(jsxTasksArray.length);
 
   function tasks() {
-    console.log(new Date(jsxTasksArray[0].startTime).getHours(), hour);
-    console.log(new Date(jsxTasksArray[0].startTime).getFullYear(), date);
-    console.log(new Date(jsxTasksArray[0].startTime).getMonth(), date);
-    console.log(new Date(jsxTasksArray[0].startTime).getDate(), date);
-    console.log(
-      new Date(jsxTasksArray[0].startTime).getFullYear() +
-        "-" +
-        ("0" + (new Date(jsxTasksArray[0].startTime).getMonth() + 1)).slice(
-          -2
-        ) +
-        "-" +
-        ("0" + new Date(jsxTasksArray[0].startTime).getDate()).slice(-2)
-    );
+    // console.log(new Date(jsxTasksArray[0].startTime).getHours(), hour);
+    // console.log(new Date(jsxTasksArray[0].startTime).getFullYear(), date);
+    // console.log(new Date(jsxTasksArray[0].startTime).getMonth(), date);
+    // console.log(new Date(jsxTasksArray[0].startTime).getDate(), date);
+    // console.log(
+    //   new Date(jsxTasksArray[0].startTime).getFullYear() +
+    //     "-" +
+    //     ("0" + (new Date(jsxTasksArray[0].startTime).getMonth() + 1)).slice(
+    //       -2
+    //     ) +
+    //     "-" +
+    //     ("0" + new Date(jsxTasksArray[0].startTime).getDate()).slice(-2)
+    // );
     const tasks_ = jsxTasksArray.filter(
       (task) =>
         new Date(task.startTime).getHours() <= hour &&
@@ -33,9 +37,12 @@ export function useDailyTasksContainer(date: string, hour: Number) {
         ).toString() == date
     );
 
-    console.log(tasks_);
+    // console.log(tasks_);
     const tasks: JSX.Element[] = tasks_.map((task) => (
-      <div>{task.taskText}</div>
+      <div>
+        {task.taskText + task.sortNumber}
+        <button onClick={() => tester(task.taskID, 5)}>+</button>
+      </div>
     ));
     return tasks;
   }
