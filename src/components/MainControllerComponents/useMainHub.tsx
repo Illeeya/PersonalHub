@@ -1,5 +1,9 @@
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, useContext, createContext, useMemo } from "react";
+import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";
+import PlannerMain from "./MainHubComponents/Planner/PlannerMain";
 import Task from "./MainHubComponents/TaskList/Task";
+import TaskListMain from "./MainHubComponents/TaskList/TaskListMain";
+import { isEqual } from "lodash";
 
 export type TaskObject = {
   taskID: number;
@@ -21,12 +25,19 @@ export function saveTasksToLocalStorage(taskArray: TaskObject[]) {
 
 export const useTaskHandler = () => {
   const [activeElement, setAcviteElement] = useState("hubElements");
-  const [jsxTasksArray, setJsxTasksArray] = useState<JSX.Element[]>([]);
   const [tasksObjectsArray, setTasksObjectsArray] = useState<TaskObject[]>(
     JSON.parse(localStorage.getItem("personalHubTasksList") || "[]")
   );
 
-  const TasksArrayContext = createContext<TaskObject[]>(tasksObjectsArray);
+  function setTasksObjectsArrayHandler(newTasks: TaskObject[]) {
+    if (!isEqual(newTasks, tasksObjectsArray)) setTasksObjectsArray(newTasks);
+  }
+
+  useEffect(() => {
+    saveTasksToLocalStorage(tasksObjectsArray);
+  }, [tasksObjectsArray]);
+
+  // const TasksArrayContext = createContext<TaskObject[]>(tasksObjectsArray);
 
   function test(id: number, sort: number) {
     console.log(id, sort);
@@ -45,6 +56,50 @@ export const useTaskHandler = () => {
     );
   }
 
+  function DisplayElement() {
+    switch (activeElement) {
+      case "hubElements":
+        return (
+          <div className="hubElementsContainer">
+            <button
+              className="hubElement"
+              onClick={() => {
+                handleActiveElementChange("taskList");
+              }}
+            >
+              Task list
+            </button>
+            <button
+              className="hubElement"
+              onClick={() => {
+                handleActiveElementChange("planner");
+              }}
+            >
+              Planner
+            </button>
+            <button
+              className="hubElement"
+              onClick={() => handleActiveElementChange("notebook")}
+            >
+              Notebook
+            </button>
+          </div>
+        );
+      case "taskList":
+        return <TaskListMain addTask={addTask} />;
+      case "planner":
+        return (
+          // <TasksArrayContext.Provider value={tasksObjectsArray}>
+          <PlannerMain tester={test} />
+          // </TasksArrayContext.Provider>
+        );
+      case "notebook":
+        return <NotebookMain addTask={addTask} />;
+      default:
+        return null;
+    }
+  }
+
   function handleActiveElementChange(activeateElement: string) {
     if (activeateElement === "hubElements") {
       cleanTaskList();
@@ -58,64 +113,6 @@ export const useTaskHandler = () => {
     );
   }
 
-  useEffect(() => {
-    setJsxTasksArray(
-      tasksObjectsArray.map((task) => {
-        return (
-          <Task
-            key={task.taskID}
-            taskID={task.taskID}
-            taskText={task.taskText}
-            startTime={task.startTime}
-            endTime={task.endTime}
-            taskHandler={handleTaskChange}
-          />
-        );
-      })
-    );
-    // setJsxTasksArraySidebar(
-    //   tasksObjectsArray.map((task) => {
-    //     return (
-    //       <SideBarTask
-    //         key={task.taskID}
-    //         taskID={task.taskID}
-    //         taskText={task.taskText}
-    //         startTime={startDateConst}
-    //         endTime={endDateConst}
-    //       />
-    //     );
-    //   })
-    // );
-
-    saveTasksToLocalStorage(tasksObjectsArray);
-  }, [tasksObjectsArray]);
-
-  function handleTaskChange(
-    taskID: number,
-    taskText: string,
-    actionType: string
-  ) {
-    if (actionType === "MODIFY")
-      setTasksObjectsArray((prevTasksObjectsArray) =>
-        prevTasksObjectsArray.map((task) => {
-          if (task.taskID === taskID)
-            return {
-              taskID: taskID,
-              taskText: taskText,
-              startTime: task.startTime,
-              endTime: task.endTime,
-              sortNumber: task.sortNumber,
-            };
-          else return task;
-        })
-      );
-    if (actionType === "DELETE")
-      setTasksObjectsArray(
-        tasksObjectsArray.filter((task) => {
-          if (task.taskID !== taskID) return task;
-        })
-      );
-  }
   function addTask(taskText: string) {
     if (!tasksObjectsArray.find((task) => task.taskText.trim() === "")) {
       let newTaskId = Date.now();
@@ -133,13 +130,16 @@ export const useTaskHandler = () => {
   }
 
   return {
-    jsxTasksArray,
+    // jsxTasksArray,
     // jsxTasksArraySidebar,
     addTask,
     activeElement,
     handleActiveElementChange,
     tasksObjectsArray,
-    TasksArrayContext,
+    // TasksArrayContext,
     test,
+    DisplayElement,
+    setTasksObjectsArrayHandler,
+    setTasksObjectsArray,
   };
 };

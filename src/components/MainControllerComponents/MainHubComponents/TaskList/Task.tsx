@@ -4,17 +4,9 @@ import { useTask } from "./useTask";
 export interface ITask {
   taskID: number;
   taskText: string;
-  startTime: Date;
-  endTime: Date;
   taskHandler: (taskID: number, taskText: string, actionType: string) => void;
 }
-export default function Task({
-  taskID,
-  taskText,
-  startTime,
-  endTime,
-  taskHandler,
-}: ITask) {
+export default function Task({ taskID, taskText, taskHandler }: ITask) {
   const { taskValue, setTaskValue } = useTask({
     taskID,
     taskText,
@@ -22,7 +14,7 @@ export default function Task({
   });
 
   return (
-    <div className="task" data-StartTime={startTime} data-EndTime={endTime}>
+    <div className="task">
       <input
         maxLength={16}
         placeholder="Task..."

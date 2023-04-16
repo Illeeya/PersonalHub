@@ -1,13 +1,12 @@
 import "./taskListMainStyle.css";
+import useTaskListMain from "./useTaskListMain";
 interface ITaskListMain {
   addTask: (taskText: string) => void;
-  jsxTasksArray: JSX.Element[];
 }
 
-export default function TaskListMain({
-  jsxTasksArray,
-  addTask,
-}: ITaskListMain) {
+export default function TaskListMain({ addTask }: ITaskListMain) {
+  const { jsxTasksArray } = useTaskListMain();
+
   return (
     <div className="taskListMainContainer">
       <div className="courtain"></div>

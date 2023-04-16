@@ -1,4 +1,4 @@
-import { useTaskHandler } from "components/MainControllerComponents/useMainHub";
+import { TasksArrayContext } from "components/MainControllerComponents/MainHub";
 import { useContext, useState } from "react";
 
 export function useDailyTasksContainer(
@@ -6,9 +6,8 @@ export function useDailyTasksContainer(
   hour: Number,
   tester: (id: number, sort: number) => void
 ) {
-  const { TasksArrayContext } = useTaskHandler();
-  const jsxTasksArray = useContext(TasksArrayContext);
-  const [tasksAmount, setTasksAmount] = useState(jsxTasksArray.length);
+  const { tasksObjectsArray } = useContext(TasksArrayContext);
+  const [tasksAmount, setTasksAmount] = useState(tasksObjectsArray.length);
 
   function tasks() {
     // console.log(new Date(jsxTasksArray[0].startTime).getHours(), hour);
@@ -24,7 +23,7 @@ export function useDailyTasksContainer(
     //     "-" +
     //     ("0" + new Date(jsxTasksArray[0].startTime).getDate()).slice(-2)
     // );
-    const tasks_ = jsxTasksArray.filter(
+    const tasks_ = tasksObjectsArray.filter(
       (task) =>
         new Date(task.startTime).getHours() <= hour &&
         new Date(task.endTime).getHours() >= hour &&
@@ -41,7 +40,13 @@ export function useDailyTasksContainer(
     const tasks: JSX.Element[] = tasks_.map((task) => (
       <div>
         {task.taskText + task.sortNumber}
-        <button onClick={() => tester(task.taskID, 5)}>+</button>
+        <button
+          onClick={() => {
+            /* HERE WILL BE TESTER */
+          }}
+        >
+          +
+        </button>
       </div>
     ));
     return tasks;
