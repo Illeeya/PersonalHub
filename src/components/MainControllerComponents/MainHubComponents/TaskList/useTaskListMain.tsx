@@ -1,5 +1,4 @@
 import { TasksArrayContext } from "components/MainControllerComponents/MainHub";
-import { TaskObject } from "components/MainControllerComponents/useMainHub";
 import { useContext, useEffect, useState } from "react";
 import Task from "./Task";
 

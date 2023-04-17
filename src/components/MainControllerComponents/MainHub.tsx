@@ -1,19 +1,19 @@
-import { TaskObject, useTaskHandler } from "./useMainHub";
+import { useMainHub } from "./useMainHub";
+import { TaskObject, useTaskHandler } from "./useMainHubTasks";
 import "./mainHubStyle.css";
 import MainHubHeader from "./MainHubComponents/MainHubHeader";
-import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";
-import PlannerMain from "./MainHubComponents/Planner/PlannerMain";
-import TaskListMain from "./MainHubComponents/TaskList/TaskListMain";
 import { createContext } from "react";
 
 interface ITasksArrayContext {
   tasksObjectsArray: TaskObject[];
   setTasksObjectsArrayHandler: (newArray: TaskObject[]) => void;
+  addTask: (taskText: string) => void;
 }
 
 const defaultTasksArrayContext: ITasksArrayContext = {
   tasksObjectsArray: [],
   setTasksObjectsArrayHandler: (newArray: TaskObject[]) => {},
+  addTask: (taskText: string) => {},
 };
 export const TasksArrayContext = createContext<ITasksArrayContext>(
   defaultTasksArrayContext
@@ -21,12 +21,14 @@ export const TasksArrayContext = createContext<ITasksArrayContext>(
 
 export default function MainHub() {
   const {
-    handleActiveElementChange,
     tasksObjectsArray,
-    DisplayElement,
     setTasksObjectsArrayHandler,
-    setTasksObjectsArray,
+    cleanTaskList,
+    addTask,
   } = useTaskHandler();
+
+  const { handleActiveElementChange, activeElement, DisplayElement } =
+    useMainHub(cleanTaskList);
 
   return (
     <div className="mainHubContainer">
@@ -40,9 +42,10 @@ export default function MainHub() {
         value={{
           tasksObjectsArray,
           setTasksObjectsArrayHandler,
+          addTask,
         }}
       >
-        <DisplayElement />
+        {DisplayElement(activeElement)}
       </TasksArrayContext.Provider>
     </div>
   );

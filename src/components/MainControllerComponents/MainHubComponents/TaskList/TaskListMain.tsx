@@ -1,11 +1,12 @@
+import { TasksArrayContext } from "components/MainControllerComponents/MainHub";
+import { useContext } from "react";
 import "./taskListMainStyle.css";
 import useTaskListMain from "./useTaskListMain";
-interface ITaskListMain {
-  addTask: (taskText: string) => void;
-}
 
-export default function TaskListMain({ addTask }: ITaskListMain) {
+export default function TaskListMain() {
   const { jsxTasksArray } = useTaskListMain();
+
+  const { addTask } = useContext(TasksArrayContext);
 
   return (
     <div className="taskListMainContainer">
