@@ -14,10 +14,11 @@ const YearlyDisplay = React.lazy(
   () => import("./PlannerDisplays/YearlyDisplay")
 );
 
-interface IPlannerMain {
-  tester: (id: number, sort: number) => void;
+function tester(id: number, sort: number) {
+  console.log("Eh");
 }
-export default function PlannerMain({ tester }: IPlannerMain) {
+
+export default function PlannerMain() {
   const {
     plannerDisplay,
     setPlannerDisplay,
@@ -80,14 +81,14 @@ export default function PlannerMain({ tester }: IPlannerMain) {
                 fullDatePicked["day"]
               }
               onChange={(event) => {
-                console.log(fullDatePicked);
-                console.log(
-                  fullDatePicked["year"] +
-                    "-" +
-                    fullDatePicked["month"] +
-                    "-" +
-                    fullDatePicked["day"]
-                );
+                // console.log(fullDatePicked);
+                // console.log(
+                //   fullDatePicked["year"] +
+                //     "-" +
+                //     fullDatePicked["month"] +
+                //     "-" +
+                //     fullDatePicked["day"]
+                // );
                 handleDateChange(event.target.value);
               }}
             />
@@ -98,21 +99,6 @@ export default function PlannerMain({ tester }: IPlannerMain) {
                 value={fullDatePicked["year"] + "-" + fullDatePicked["month"]}
               />
             ) : null}
-            {/* <input
-              className="visiblePlannerDatePicker"
-              id="visiblePlannerDatePicker"
-              type={pickerType}
-              value={
-                plannerDisplay === "MONTHLY"
-                  ? fullDatePicked["year"] + "-" + fullDatePicked["month"]
-                  : fullDatePicked["year"] +
-                    "-" +
-                    fullDatePicked["month"] +
-                    "-" +
-                    fullDatePicked["day"]
-              }
-              readOnly
-            /> */}
           </div>
         ) : (
           <div className="datePickers">

@@ -6,7 +6,7 @@ export type TaskObject = {
   taskText: string;
   startTime: Date;
   endTime: Date;
-  sortNumber: number | null;
+  sortNumber: number;
 };
 
 const startDateConst = new Date(2023, 3, 9, 11, 0, 0);
@@ -66,7 +66,7 @@ export const useTaskHandler = () => {
           taskText: taskText,
           startTime: startDateConst,
           endTime: endDateConst,
-          sortNumber: null,
+          sortNumber: 0,
         },
       ]);
     }

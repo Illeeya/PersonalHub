@@ -9,7 +9,7 @@ export const useMainHub = (cleanTaskList: () => void) => {
   const [activeElement, setAcviteElement] = useState("hubElements");
 
   function DisplayElement(element: string) {
-    console.log("ZeQveschion");
+    // console.log("ZeQveschion");
     switch (element) {
       case "hubElements":
         return (
@@ -40,14 +40,10 @@ export const useMainHub = (cleanTaskList: () => void) => {
         );
       case "taskList":
         return <TaskListMain />;
-      // case "planner":
-      //   return (
-      //     // <TasksArrayContext.Provider value={tasksObjectsArray}>
-      //     <PlannerMain />
-      //     // </TasksArrayContext.Provider>
-      //   );
-      // case "notebook":
-      //   return <NotebookMain />;
+      case "planner":
+        return <PlannerMain />;
+      case "notebook":
+        return <NotebookMain />;
       default:
         return null;
     }

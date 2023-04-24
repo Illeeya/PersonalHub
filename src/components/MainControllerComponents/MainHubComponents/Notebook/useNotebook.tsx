@@ -1,7 +1,8 @@
-import { useState, ChangeEvent, useEffect } from "react";
+import { TasksArrayContext } from "components/MainControllerComponents/MainHub";
+import { useState, ChangeEvent, useEffect, useContext } from "react";
 import Note from "./Note";
 
-export function useNotebook(addTask: (taskText: string) => void) {
+export function useNotebook() {
   const [notesObjects, setNotesObjects] = useState<
     { noteID: string; noteText: string }[]
   >(JSON.parse(localStorage.getItem("personalHubNotes") || "[]"));
@@ -10,6 +11,8 @@ export function useNotebook(addTask: (taskText: string) => void) {
   useEffect(() => {
     updateNotes();
   }, [notesObjects]);
+
+  const { addTask } = useContext(TasksArrayContext);
 
   function updateNotes() {
     setNotes((notes) =>

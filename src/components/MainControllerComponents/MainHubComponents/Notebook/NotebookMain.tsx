@@ -1,11 +1,8 @@
 import { useNotebook } from "./useNotebook";
 import "./notebookMainStyle.css";
 
-interface INotebookMain {
-  addTask: (taskText: string) => void;
-}
-export default function NotebookMain({ addTask }: INotebookMain) {
-  const { notes, addNewNote } = useNotebook(addTask);
+export default function NotebookMain() {
+  const { notes, addNewNote } = useNotebook();
   return (
     <div className="notebookMainContainer">
       <div className="notesContainer">{notes}</div>
