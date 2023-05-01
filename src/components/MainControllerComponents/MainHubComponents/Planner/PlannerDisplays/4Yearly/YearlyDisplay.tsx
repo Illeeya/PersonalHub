@@ -1,4 +1,4 @@
-import { useYearlyDisplay } from "./usePlannerDisplays";
+import { useYearlyDisplay } from "../usePlannerDisplays";
 import "./yearlyDisplayStyle.css";
 
 export interface IYearlyDisplay {

@@ -1,4 +1,4 @@
-import DailyTasksContainer from "./DailyTasksContainer";
+import DailyTasksContainer from "./1Daily/DailyTasksContainer";
 
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 export function useDailyDisplay(

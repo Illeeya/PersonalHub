@@ -1,4 +1,19 @@
+import React from "react";
 import { useState } from "react";
+import { IDatePicked } from "types/IDatePicked";
+
+const DailyDisplay = React.lazy(
+  () => import("./PlannerDisplays/1Daily/DailyDisplay")
+);
+const MonthlyDisplay = React.lazy(
+  () => import("./PlannerDisplays/3Monthly/MonthlyDisplay")
+);
+const WeeklyDisplay = React.lazy(
+  () => import("./PlannerDisplays/2Weekly/WeeklyDisplay")
+);
+const YearlyDisplay = React.lazy(
+  () => import("./PlannerDisplays/4Yearly/YearlyDisplay")
+);
 
 export const useMainPlanner = () => {
   const today: Date = new Date();
@@ -9,8 +24,8 @@ export const useMainPlanner = () => {
     MONTHLY: "date",
     YEARLY: "number",
   };
-  const [plannerDisplay, setPlannerDisplay] = useState("DAILY");
-  const [fullDatePicked, setFullDatePicked] = useState(() => {
+  const [plannerDisplay, setPlannerDisplay] = useState<string>("DAILY");
+  const [fullDatePicked, setFullDatePicked] = useState<IDatePicked>(() => {
     return {
       year: today.getFullYear().toString(),
       month: ("0" + (today.getMonth() + 1)).slice(-2),
@@ -43,6 +58,7 @@ export const useMainPlanner = () => {
     setFullDatePicked({ year: year_, month: month_, day: day_ });
     // console.log("Finished");
   }
+
   const pickerType = pickerTypes[plannerDisplay];
 
   return {

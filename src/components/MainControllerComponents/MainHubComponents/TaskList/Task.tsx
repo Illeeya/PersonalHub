@@ -1,11 +1,11 @@
 import "./taskStyle.css";
 import { useTask } from "./useTask";
 
-export interface ITask {
+type ITask = {
   taskID: number;
   taskText: string;
   taskHandler: (taskID: number, taskText: string, actionType: string) => void;
-}
+};
 export default function Task({ taskID, taskText, taskHandler }: ITask) {
   const { taskValue, setTaskValue } = useTask({
     taskID,

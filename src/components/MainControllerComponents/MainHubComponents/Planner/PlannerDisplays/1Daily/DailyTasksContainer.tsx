@@ -12,5 +12,5 @@ export default function DailyTasksContainer({
   tester,
 }: IDailyTasksContainer) {
   const { tasks } = useDailyTasksContainer(date, hour, tester);
-  return <div className="dailyTaskContainer">{tasks()}</div>; // classname='newModuleMainContainer'
+  return <div className="dailyTaskContainer">{tasks()}</div>;
 }

@@ -1,8 +1,5 @@
 import "./mainHubHeaderStyle.css";
-interface IMainHubHeader {
-  goBack: () => void;
-}
-export default function MainHubHeader({ goBack }: IMainHubHeader) {
+export default function MainHubHeader({ goBack }: { goBack: () => void }) {
   return (
     <>
       <div className="mainHubHeaderContainer">

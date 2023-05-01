@@ -1,4 +1,4 @@
-import { useMonthlyDisplay } from "./usePlannerDisplays";
+import { useMonthlyDisplay } from "../usePlannerDisplays";
 import "./monthlyDisplayStyle.css";
 
 export interface IMonthlyDisplay {

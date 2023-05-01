@@ -15,7 +15,7 @@ export function useNotebook() {
   const { addTask } = useContext(TasksArrayContext);
 
   function updateNotes() {
-    setNotes((notes) =>
+    setNotes(
       notesObjects.map((noteObject) => (
         <Note
           key={noteObject.noteID}
@@ -60,13 +60,4 @@ export function useNotebook() {
   }
 
   return { addNewNote, notes };
-}
-
-export function useNote() {
-  function scaleTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
-    event.target.style.height = "auto";
-    event.target.style.height = `${event.target.scrollHeight}px`;
-  }
-
-  return { scaleTextArea };
 }

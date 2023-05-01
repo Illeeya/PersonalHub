@@ -1,4 +1,4 @@
-import { useWeeklyDisplay } from "./usePlannerDisplays";
+import { useWeeklyDisplay } from "../usePlannerDisplays";
 import "./weeklyDisplayStyle.css";
 
 export interface IWeeklyDisplay {

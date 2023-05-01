@@ -1,13 +1,13 @@
-import { useNote } from "./useNotebook";
 import "./noteStyle.css";
+import useNote from "./useNote";
 
-export interface INote {
+type INote = {
   noteID: string;
   noteText: string;
   addTask: (taskText: string) => void;
   handleDelete: (noteID: string) => void;
   handleChange: (noteID: string, noteText: string) => void;
-}
+};
 export default function Note({
   noteID,
   noteText,

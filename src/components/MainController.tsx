@@ -1,11 +1,9 @@
 import { useLogin } from "./useMainController";
-import Authentication from "./MainControllerComponents/Authentication";
-import MainHub from "./MainControllerComponents/MainHub";
 
 function MainController() {
-  const { isLoggedIn, logIn } = useLogin();
+  const { MainControllerElement } = useLogin();
 
-  return <>{isLoggedIn ? <MainHub /> : <Authentication logIn={logIn} />}</>;
+  return <MainControllerElement />;
 }
 
 export default MainController;

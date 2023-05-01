@@ -1,6 +1,6 @@
 import { TasksArrayContext } from "components/MainControllerComponents/MainHub";
-import { TaskObject } from "components/MainControllerComponents/useMainHubTasks";
 import { useContext, useState } from "react";
+import { ITaskObject } from "types/ITaskObject";
 
 export function useDailyTasksContainer(
   date: string,
@@ -53,8 +53,8 @@ export function useDailyTasksContainer(
 
     console.log(arraySize);
 
-    const sortArray: (TaskObject | null)[] = new Array(arraySize).fill(null);
-    const newSortsArray: TaskObject[] = [];
+    const sortArray: (ITaskObject | null)[] = new Array(arraySize).fill(null);
+    const newSortsArray: ITaskObject[] = [];
 
     console.log(sortArray);
 

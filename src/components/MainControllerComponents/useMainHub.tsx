@@ -3,14 +3,11 @@ import NotebookMain from "./MainHubComponents/Notebook/NotebookMain";
 import PlannerMain from "./MainHubComponents/Planner/PlannerMain";
 import TaskListMain from "./MainHubComponents/TaskList/TaskListMain";
 
-// State Logic
-
 export const useMainHub = (cleanTaskList: () => void) => {
   const [activeElement, setAcviteElement] = useState("hubElements");
 
-  function DisplayElement(element: string) {
-    // console.log("ZeQveschion");
-    switch (element) {
+  function DisplayElement() {
+    switch (activeElement) {
       case "hubElements":
         return (
           <div className="hubElementsContainer">
@@ -57,7 +54,6 @@ export const useMainHub = (cleanTaskList: () => void) => {
   }
 
   return {
-    activeElement,
     handleActiveElementChange,
     DisplayElement,
   };

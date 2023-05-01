@@ -1,5 +1,5 @@
 import "./dailyDisplayStyle.css";
-import { useDailyDisplay } from "./usePlannerDisplays";
+import { useDailyDisplay } from "../usePlannerDisplays";
 
 interface IDailyDisplay {
   date: string;
