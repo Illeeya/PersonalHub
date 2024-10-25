@@ -1,4 +1,4 @@
-# PersonalHub [On pause - Refactor required]
-Hub containing multiple applications allowing for easy personal management.
+# PersonalHub
+Hub containing multiple applications for easy personal management.
 
 
