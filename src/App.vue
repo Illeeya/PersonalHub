@@ -1,34 +1,55 @@
 <template>
+    <header>
+        <nav>
+            <RouterLink class="navElement" to="/">Home</RouterLink>
+            <RouterLink class="navElement" to="/timers">Timers</RouterLink>
+            <RouterLink class="navElement" to="/taskList">Task List</RouterLink>
+        </nav>
+    </header>
     <div class="mainAppContainer">
-        <LoginView v-if="username == ''"></LoginView>
-        <TaskListView v-else></TaskListView>
+        <RouterView />
     </div>
 </template>
 
 <script setup lang="ts">
 import { provide, ref } from "vue";
-import LoginView from "./components/LoginView.vue";
-import TaskListView from "./components/TaskListView.vue";
+import TaskListView from "./views/TaskListView.vue";
+import { RouterView } from "vue-router";
+// const username = ref<string>("");
 
-const username = ref<string>("");
+// const changeUsername = (_username: string) => {
+//     console.log(_username);
+//     username.value = _username;
+// };
 
-const changeUsername = (_username: string) => {
-    console.log(_username);
-    username.value = _username;
-};
-
-provide("username", username);
-provide("changeUsername", changeUsername);
+// provide("username", username);
+// provide("changeUsername", changeUsername);
 </script>
 
 <style scoped>
 .mainAppContainer {
     min-width: 100%;
-    min-height: 100%;
+    min-height: calc(100vh - 3vmin);
+    overflow: auto;
     background-color: black;
     color: aliceblue;
     padding: 1rem;
     padding-left: 2rem;
+}
+header {
+    height: 3vmin;
+    padding-top: 1vmin;
+    background-color: black;
+    font-size: 2vmin;
+    color: aliceblue;
+}
+
+.navElement {
+    border: 1px solid aliceblue;
+    text-decoration: unset !important;
+    color: aliceblue !important;
+    padding: 1vmin;
+    box-sizing: border-box;
 }
 </style>
 
