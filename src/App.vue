@@ -4,6 +4,7 @@
             <RouterLink class="navElement" to="/">Home</RouterLink>
             <RouterLink class="navElement" to="/timers">Timers</RouterLink>
             <RouterLink class="navElement" to="/taskList">Task List</RouterLink>
+            <RouterLink class="navElement" to="/quiz">Quiz</RouterLink>
         </nav>
     </header>
     <div class="mainAppContainer">

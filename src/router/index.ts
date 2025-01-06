@@ -20,6 +20,11 @@ const router = createRouter({
             component: () => import("../views/TimersView.vue"),
         },
         {
+            path: "/quiz",
+            name: "quiz",
+            component: () => import("../views/QuizView.vue"),
+        },
+        {
             path: "/:pathMatch(.*)*",
             redirect: "/",
         },
